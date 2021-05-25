@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5628B0EB-FE13-414F-B299-DAD1E3485BAD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Assignment_4</RootNamespace>
+    <AssemblyName>Assignment 4</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.6.11.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Protocols.6.11.1\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.6.11.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsBase_Core.STW.4.0.30319.1\lib\net40\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customer - Staff\Add Customer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer - Staff\Add Customer.Designer.cs">
+      <DependentUpon>Add Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer - Staff\Add Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer - Staff\Add Staff.Designer.cs">
+      <DependentUpon>Add Staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer - Staff\Add Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer - Staff\Add Form.Designer.cs">
+      <DependentUpon>Add Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer - Staff\Customer Info.cs" />
+    <Compile Include="Customer - Staff\Display Customer Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer - Staff\Display Customer Info.Designer.cs">
+      <DependentUpon>Display Customer Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer - Staff\Display Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer - Staff\Display Staff.Designer.cs">
+      <DependentUpon>Display Staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer - Staff\Staff Info.cs" />
+    <Compile Include="Menu\DessertMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\DessertMenu.Designer.cs">
+      <DependentUpon>DessertMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\DrinksMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\DrinksMenu.Designer.cs">
+      <DependentUpon>DrinksMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\HomeMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\HomeMenu.Designer.cs">
+      <DependentUpon>HomeMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Menu Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\Menu Form.Designer.cs">
+      <DependentUpon>Menu Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Form\OrderNow.cs" />
+    <Compile Include="Menu\OrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Menu\SaladsMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\SaladsMenu.Designer.cs">
+      <DependentUpon>SaladsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\SeafoodMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\SeafoodMenu.Designer.cs">
+      <DependentUpon>SeafoodMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\StarterMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\StarterMenu.Designer.cs">
+      <DependentUpon>StarterMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\SteaksMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Menu\SteaksMenu.Designer.cs">
+      <DependentUpon>SteaksMenu.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Customer - Staff\Add Customer.resx">
+      <DependentUpon>Add Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer - Staff\Add Form.resx">
+      <DependentUpon>Add Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer - Staff\Add Staff.resx">
+      <DependentUpon>Add Staff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer - Staff\Display Customer Info.resx">
+      <DependentUpon>Display Customer Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer - Staff\Display Staff.resx">
+      <DependentUpon>Display Staff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\DessertMenu.resx">
+      <DependentUpon>DessertMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\DrinksMenu.resx">
+      <DependentUpon>DrinksMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\HomeMenu.resx">
+      <DependentUpon>HomeMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\Menu Form.resx">
+      <DependentUpon>Menu Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\OrderView.resx">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Menu\SaladsMenu.resx">
+      <DependentUpon>SaladsMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\SeafoodMenu.resx">
+      <DependentUpon>SeafoodMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\StarterMenu.resx">
+      <DependentUpon>StarterMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\SteaksMenu.resx">
+      <DependentUpon>SteaksMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
