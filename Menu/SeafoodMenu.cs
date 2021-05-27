@@ -1,24 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Assignment_4
 {
     public partial class SeafoodMenu : UserControl
     {
-        private OrderNow SEAFOODMENU = new OrderNow();
-        private SaveFileDialog save = new SaveFileDialog();
-
         public SeafoodMenu()
         {
             InitializeComponent();
-            save.Filter = "XML files (*.xml)|*.xml";
         }
 
         private void buttonOrderNow1_Click(object sender, EventArgs e)
         {
             OrderHelper.NewOrder(labelSeafoodName1.Text, labelSeafoodPrice1.Text, SeafoodNumericUpDown1.Value);
-             
         }
 
         private void buttonOrderNow2_Click(object sender, EventArgs e)

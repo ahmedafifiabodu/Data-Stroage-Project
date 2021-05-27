@@ -1,34 +1,28 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Assignment_4
 {
     public partial class SaladsMenu : UserControl
     {
-        private OrderNow SALADSMENU = new OrderNow();
-        private SaveFileDialog save = new SaveFileDialog();
-
         public SaladsMenu()
         {
             InitializeComponent();
-            save.Filter = "XML files (*.xml)|*.xml";
         }
 
         private void buttonOrderNow1_Click(object sender, EventArgs e)
         {
             OrderHelper.NewOrder(labelSaladName1.Text, labelSaladPrice1.Text, SaladsNumericUpDown1.Value);
-            
         }
 
         private void buttonOrderNow2_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelSaladName2.Text, labelSaladPrice2.Text, SaladsNumericUpDown2.Value); 
+            OrderHelper.NewOrder(labelSaladName2.Text, labelSaladPrice2.Text, SaladsNumericUpDown2.Value);
         }
 
         private void buttonOrderNow3_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelSaladName3.Text, labelSaladPrice3.Text, SaladsNumericUpDown3.Value); 
+            OrderHelper.NewOrder(labelSaladName3.Text, labelSaladPrice3.Text, SaladsNumericUpDown3.Value);
         }
 
         private void SaladsNumericUpDown1_ValueChanged(object sender, EventArgs e)

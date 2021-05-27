@@ -1,18 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Assignment_4
 {
     public partial class StarterMenu : UserControl
     {
-        private OrderNow n = new OrderNow();
-        private SaveFileDialog save = new SaveFileDialog();
-
         public StarterMenu()
         {
             InitializeComponent();
-            save.Filter = "XML files (*.xml)|*.xml";
         }
 
         private void buttonbuttonOrderNow1_Click(object sender, EventArgs e)
@@ -27,7 +22,7 @@ namespace Assignment_4
 
         private void buttonOrderNow3_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelStarterName3.Text, labelStarterPrice3.Text, StarterNumericUpDown3.Value); 
+            OrderHelper.NewOrder(labelStarterName3.Text, labelStarterPrice3.Text, StarterNumericUpDown3.Value);
         }
 
         private void DrinksNumericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -37,7 +32,7 @@ namespace Assignment_4
             Qty = 22.99 * Convert.ToDouble(StarterNumericUpDown1.Value);
             labelStarterPrice1.Text = "$" + Qty.ToString();
 
-            if(labelStarterPrice1.Text == "$0")
+            if (labelStarterPrice1.Text == "$0")
             {
                 labelStarterPrice1.Text = "$0.00";
             }
