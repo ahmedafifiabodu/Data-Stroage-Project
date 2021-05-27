@@ -374,6 +374,7 @@ namespace Assignment_4
             this.OrderView.Name = "OrderView";
             this.OrderView.Size = new System.Drawing.Size(382, 370);
             this.OrderView.TabIndex = 30;
+            this.OrderView.Visible = false;
             // 
             // DessertMenu
             // 
