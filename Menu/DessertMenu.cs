@@ -17,80 +17,18 @@ namespace Assignment_4
 
         private void buttonOrderNow1_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to order more ?", "Question?", MessageBoxButtons.YesNo);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName1.Text, labelDessertPrice1.Text, DessertNumericUpDown1.Value)
-                    });
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName1.Text, labelDessertPrice1.Text, DessertNumericUpDown1.Value)
-                    });
-
-                    StreamWriter sw = new StreamWriter(save.FileName);
-                    DESSERTMENU.xml.Serialize(sw, Menu_Form.xb);
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
-                    sw.Close();
-                }
-            }
+            OrderHelper.NewOrder(labelDessertName1.Text, labelDessertPrice1.Text, DessertNumericUpDown1.Value);
+           
         }
 
         private void buttonOrderNow2_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to order more ?", "Question?", MessageBoxButtons.YesNo);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName2.Text, labelDessertPrice2.Text, DessertNumericUpDown2.Value)
-                    });
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName2.Text, labelDessertPrice2.Text, DessertNumericUpDown2.Value)
-                    });
-
-                    StreamWriter sw = new StreamWriter(save.FileName);
-                    DESSERTMENU.xml.Serialize(sw, Menu_Form.xb);
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
-                    sw.Close();
-                }
-            }
+            OrderHelper.NewOrder(labelDessertName2.Text, labelDessertPrice2.Text, DessertNumericUpDown2.Value);
         }
 
         private void buttonOrderNow3_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to order more ?", "Question?", MessageBoxButtons.YesNo);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName3.Text, labelDessertPrice3.Text, DessertNumericUpDown3.Value)
-                    });
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    Menu_Form.xb.AddRange(new OrderNow[] {
-                    new OrderNow(labelDessertName3.Text, labelDessertPrice3.Text, DessertNumericUpDown3.Value)
-                    });
-
-                    StreamWriter sw = new StreamWriter(save.FileName);
-                    DESSERTMENU.xml.Serialize(sw, Menu_Form.xb);
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
-                    sw.Close();
-                }
-            }
+            OrderHelper.NewOrder(labelDessertName3.Text, labelDessertPrice3.Text, DessertNumericUpDown3.Value);
         }
 
         private void DessertNumericUpDown1_ValueChanged(object sender, EventArgs e)
