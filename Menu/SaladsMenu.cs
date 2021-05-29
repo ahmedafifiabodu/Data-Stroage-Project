@@ -17,18 +17,18 @@ namespace Assignment_4
 
         private void buttonOrderNow1_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelSaladName1.Text, labelSaladPrice1.Text, SaladsNumericUpDown1.Value);
+            Helper.NewOrder(labelSaladName1.Text, labelSaladPrice1.Text, SaladsNumericUpDown1.Value);
             
         }
 
         private void buttonOrderNow2_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelSaladName2.Text, labelSaladPrice2.Text, SaladsNumericUpDown2.Value); 
+            Helper.NewOrder(labelSaladName2.Text, labelSaladPrice2.Text, SaladsNumericUpDown2.Value); 
         }
 
         private void buttonOrderNow3_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelSaladName3.Text, labelSaladPrice3.Text, SaladsNumericUpDown3.Value); 
+            Helper.NewOrder(labelSaladName3.Text, labelSaladPrice3.Text, SaladsNumericUpDown3.Value); 
         }
 
         private void SaladsNumericUpDown1_ValueChanged(object sender, EventArgs e)

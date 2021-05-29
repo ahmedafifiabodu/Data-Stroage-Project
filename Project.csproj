@@ -95,7 +95,7 @@
       <DependentUpon>Display Staff.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer - Staff\Staff Info.cs" />
-    <Compile Include="Main Form\OrderHelper.cs" />
+    <Compile Include="Main Form\Helper.cs" />
     <Compile Include="Menu\DessertMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -64,6 +64,7 @@ namespace Assignment_4.Customer___Staff
             this.labelName = new System.Windows.Forms.Label();
             this.labelAddress = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.combo_recommend = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // radioButtonNo
@@ -459,10 +460,24 @@ namespace Assignment_4.Customer___Staff
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
+            // combo_recommend
+            // 
+            this.combo_recommend.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_recommend.FormattingEnabled = true;
+            this.combo_recommend.Items.AddRange(new object[] {
+            "Yes",
+            "Maybe",
+            "No"});
+            this.combo_recommend.Location = new System.Drawing.Point(376, 378);
+            this.combo_recommend.Name = "combo_recommend";
+            this.combo_recommend.Size = new System.Drawing.Size(185, 21);
+            this.combo_recommend.TabIndex = 105;
+            // 
             // Add_Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.combo_recommend);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.radioButtonNo);
             this.Controls.Add(this.buttonSubmit);
@@ -540,5 +555,6 @@ namespace Assignment_4.Customer___Staff
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelAddress;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.ComboBox combo_recommend;
     }
 }

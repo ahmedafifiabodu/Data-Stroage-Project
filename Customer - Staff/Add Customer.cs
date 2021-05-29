@@ -22,21 +22,23 @@ namespace Assignment_4.Customer___Staff
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var checkedButton = Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+          Helper.CustomerList.Add(new CustomerInfo(
+                textBoxFirstName.Text,
+                textBoxLastName.Text,
+                textBoxStreetAddress.Text,
+                textBoxStreetAddressLine2.Text,
+                textBoxCity.Text,
+                textBoxStateProvince.Text,
+                int.Parse(textBoxPostalZipCode.Text),
+                textBoxPhone.Text,
+                textBoxEmail.Text,
+                comboBoxHearAboutUs.SelectedItem.ToString(),
+                richTextBoxFeedback.Text,
+                richTextBoxSuggestions.Text,
+                combo_recommend.SelectedItem.ToString()));
 
-            if (Save.ShowDialog() == DialogResult.OK)
-            {
-                XDocument doc = XDocument.Load(Save.FileName);
-                XElement school = doc.Element("ArrayOfCustomerInfo");
-                school.Add(new XElement("CustomerInfo", new XElement("FirstName", textBoxFirstName.Text), new XElement("LastName", textBoxLastName.Text), new XElement("StreetAddress", textBoxStreetAddress.Text),
-                    new XElement("StreetAddressLine2", textBoxStreetAddressLine2.Text), new XElement("City", textBoxCity.Text), new XElement("SateProvince", textBoxStateProvince.Text),
-                    new XElement("PostalZipCode", textBoxPostalZipCode.Text), new XElement("Phone", textBoxPhone.Text), new XElement("Email", textBoxEmail.Text),
-                    new XElement("HearAboutUs", comboBoxHearAboutUs.SelectedItem.ToString()), new XElement("Feedback", richTextBoxFeedback.Text), new XElement("Suggestions", richTextBoxSuggestions.Text),
-                    new XElement("Recommend", checkedButton.Text)));
+            MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                doc.Save(Save.FileName);
-                MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
-            }
         }
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
@@ -134,23 +136,19 @@ namespace Assignment_4.Customer___Staff
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
-            textBoxFirstName.Clear();
-            textBoxLastName.Clear();
-            textBoxStreetAddress.Clear();
-            textBoxStreetAddressLine2.Clear();
-            textBoxCity.Clear();
-            textBoxStateProvince.Clear();
-            textBoxPostalZipCode.Clear();
-            richTextBoxFeedback.Clear();
-            richTextBoxSuggestions.Clear();
-            
-            foreach(Control rb in Controls)
+            foreach (Control rb in Controls)
             {
-                if(rb is RadioButton)
-                {
+
+                if (rb is RadioButton)
                     (rb as RadioButton).Checked = false;
-                }
-                
+
+                if (rb is TextBox)
+                    (rb as TextBox).Clear();
+
+
+                if (rb is RichTextBox)
+                    (rb as RichTextBox).Clear();
+
             }
 
             comboBoxHearAboutUs.Text = "Please Select";

@@ -18,7 +18,7 @@ namespace Assignment_4
 
         private void buttonOrderNow_Click(object sender, EventArgs e)
         {
-            OrderHelper.NewOrder(labelHomeName.Text, labelHomePrice.Text, HomeNumericUpDown.Value);
+            Helper.NewOrder(labelHomeName.Text, labelHomePrice.Text, HomeNumericUpDown.Value);
         }
 
         private void HomeNumericUpDown_ValueChanged(object sender, EventArgs e)
