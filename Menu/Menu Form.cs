@@ -29,7 +29,10 @@ namespace Assignment_4
         // Handle Any Side Button Click
         private void Navigation_Buttons_Click(object sender, EventArgs e)
         {
+
             navigate(((Button)sender).Top);
+
+
             switch (((Button)sender).Name)
             {
 

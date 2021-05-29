@@ -7,7 +7,6 @@ namespace Assignment_4
     [Serializable]
     public class OrderNow
     {
-        public XmlSerializer xml = new XmlSerializer(typeof(List<OrderNow>));
 
         public string name;
         public string price;
