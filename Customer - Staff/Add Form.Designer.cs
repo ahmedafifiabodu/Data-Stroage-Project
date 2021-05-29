@@ -276,6 +276,7 @@ namespace Assignment_4
             this.display_Staff1.Name = "display_Staff1";
             this.display_Staff1.Size = new System.Drawing.Size(715, 470);
             this.display_Staff1.TabIndex = 64;
+            this.display_Staff1.Load += new System.EventHandler(this.display_Staff1_Load);
             // 
             // add_Customer1
             // 

@@ -51,6 +51,7 @@ namespace Assignment_4
             this.label5 = new System.Windows.Forms.Label();
             this.buttonDeserialization = new System.Windows.Forms.Button();
             this.buttonAddStaffCustomer = new System.Windows.Forms.Button();
+            this.toolTipAddCustomerOrStaff = new System.Windows.Forms.ToolTip(this.components);
             this.OrderView = new Assignment_4.OrderView();
             this.DessertMenu = new Assignment_4.DessertMenu();
             this.SteaksMenu = new Assignment_4.SteaksMenu();
@@ -59,7 +60,6 @@ namespace Assignment_4
             this.DrinksMenu = new Assignment_4.DrinksMenu();
             this.StarterMenu = new Assignment_4.StarterMenu();
             this.HomeOrder = new Assignment_4.HomeMenu();
-            this.toolTipAddCustomerOrStaff = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -107,7 +107,7 @@ namespace Assignment_4
             this.buttonDesserts.Text = "   Desserts";
             this.buttonDesserts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDesserts.UseVisualStyleBackColor = true;
-            this.buttonDesserts.Click += new System.EventHandler(this.buttonDesserts_Click);
+            this.buttonDesserts.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonSteaks
             // 
@@ -124,7 +124,7 @@ namespace Assignment_4
             this.buttonSteaks.Text = "   Steaks";
             this.buttonSteaks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSteaks.UseVisualStyleBackColor = true;
-            this.buttonSteaks.Click += new System.EventHandler(this.buttonSteaks_Click);
+            this.buttonSteaks.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonSalads
             // 
@@ -141,7 +141,7 @@ namespace Assignment_4
             this.buttonSalads.Text = "   Salads";
             this.buttonSalads.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSalads.UseVisualStyleBackColor = true;
-            this.buttonSalads.Click += new System.EventHandler(this.buttonSalads_Click);
+            this.buttonSalads.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonSeafood
             // 
@@ -158,7 +158,7 @@ namespace Assignment_4
             this.buttonSeafood.Text = "   Seafood";
             this.buttonSeafood.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSeafood.UseVisualStyleBackColor = true;
-            this.buttonSeafood.Click += new System.EventHandler(this.buttonSeafood_Click);
+            this.buttonSeafood.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonDrinks
             // 
@@ -175,7 +175,7 @@ namespace Assignment_4
             this.buttonDrinks.Text = "   Drinks";
             this.buttonDrinks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDrinks.UseVisualStyleBackColor = true;
-            this.buttonDrinks.Click += new System.EventHandler(this.buttonDrinks_Click);
+            this.buttonDrinks.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonStarter
             // 
@@ -192,7 +192,7 @@ namespace Assignment_4
             this.buttonStarter.Text = "   Starter";
             this.buttonStarter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonStarter.UseVisualStyleBackColor = true;
-            this.buttonStarter.Click += new System.EventHandler(this.buttonStarter_Click);
+            this.buttonStarter.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // buttonHome
             // 
@@ -209,7 +209,7 @@ namespace Assignment_4
             this.buttonHome.Text = "   Home";
             this.buttonHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonHome.UseVisualStyleBackColor = true;
-            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
+            this.buttonHome.Click += new System.EventHandler(this.Navigation_Buttons_Click);
             // 
             // panel2
             // 
@@ -361,6 +361,11 @@ namespace Assignment_4
             this.buttonAddStaffCustomer.Click += new System.EventHandler(this.buttonAddStaffCustomer_Click);
             this.buttonAddStaffCustomer.MouseHover += new System.EventHandler(this.buttonAddStaffCustomer_MouseHover);
             // 
+            // toolTipAddCustomerOrStaff
+            // 
+            this.toolTipAddCustomerOrStaff.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipAddCustomerOrStaff.ToolTipTitle = "Messages";
+            // 
             // OrderView
             // 
             this.OrderView.AutoScroll = true;
@@ -369,6 +374,7 @@ namespace Assignment_4
             this.OrderView.Name = "OrderView";
             this.OrderView.Size = new System.Drawing.Size(382, 370);
             this.OrderView.TabIndex = 30;
+            this.OrderView.Visible = false;
             // 
             // DessertMenu
             // 
@@ -376,6 +382,7 @@ namespace Assignment_4
             this.DessertMenu.Name = "DessertMenu";
             this.DessertMenu.Size = new System.Drawing.Size(770, 477);
             this.DessertMenu.TabIndex = 20;
+            this.DessertMenu.Load += new System.EventHandler(this.DessertMenu_Load);
             // 
             // SteaksMenu
             // 
@@ -420,11 +427,6 @@ namespace Assignment_4
             this.HomeOrder.TabIndex = 14;
             this.HomeOrder.Click += new System.EventHandler(this.HomeOrder_Click);
             this.HomeOrder.MouseClick += new System.Windows.Forms.MouseEventHandler(this.HomeOrder_Click);
-            // 
-            // toolTipAddCustomerOrStaff
-            // 
-            this.toolTipAddCustomerOrStaff.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTipAddCustomerOrStaff.ToolTipTitle = "Messages";
             // 
             // Menu_Form
             // 

@@ -57,5 +57,10 @@ namespace Assignment_4
             this.Hide();
             menu.Show();
         }
+
+        private void display_Staff1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
