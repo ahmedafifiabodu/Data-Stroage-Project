@@ -22,51 +22,35 @@ namespace Assignment_4
 
         private void buttonHome_Click(object sender, EventArgs e)
         {
-            Sidepanel.Height = buttonHome.Height;
-            Sidepanel.Top = buttonHome.Top;
-            HomeOrder.BringToFront();
-            OrderView.Visible = false;
-        }
+            navigate(((Button)sender).Top);
+            switch (((Button)sender).Name)
+            {
+                case "buttonHome":
+                    HomeOrder.BringToFront();
+                    break;
+                case "buttonStarter":
+                    StarterMenu.BringToFront();
+                    break;
+                case "buttonDrinks":
+                    DrinksMenu.BringToFront();
+                    break;
+                case "buttonSeafood":
+                    SeaFoodMenu.BringToFront();
+                    break;
+                case "buttonSalads":
+                    SaladsMenu.BringToFront();
+                    break;
+                case "buttonSteaks":
+                    SteaksMenu.BringToFront();
+                    break;
+                case "buttonDesserts":
+                    DessertMenu.BringToFront();
+                    break;
 
-        private void buttonStarter_Click(object sender, EventArgs e)
-        {
-            Sidepanel.Height = buttonStarter.Height;
-            Sidepanel.Top = buttonStarter.Top;
-            StarterMenu.BringToFront();
-            OrderView.Visible = false;
-        }
-
-        private void buttonDrinks_Click(object sender, EventArgs e)
-        {
-            Sidepanel.Height = buttonDrinks.Height;
-            Sidepanel.Top = buttonDrinks.Top;
-            DrinksMenu.BringToFront();
-            OrderView.Visible = false;
-        }
-
-        private void buttonSeafood_Click(object sender, EventArgs e)
-        {
-            Sidepanel.Height = buttonSeafood.Height;
-            Sidepanel.Top = buttonSeafood.Top;
-            SeaFoodMenu.BringToFront();
-            OrderView.Visible = false;
-        }
-
-        private void buttonSalads_Click(object sender, EventArgs e)
-        {
-            Sidepanel.Height = buttonSalads.Height;
-            Sidepanel.Top = buttonSalads.Top;
-            SaladsMenu.BringToFront();
-            OrderView.Visible = false;
-        }
-
-        private void buttonSteaks_Click(object sender, EventArgs e)
-        {
-            Sidepanel.Height = buttonSteaks.Height;
-            Sidepanel.Top = buttonSteaks.Top;
-            SteaksMenu.BringToFront();
-            OrderView.Visible = false;
-        }
+                default:
+                    HomeOrder.BringToFront();
+                    break;
+            }
 
         private void buttonDesserts_Click(object sender, EventArgs e)
         {
