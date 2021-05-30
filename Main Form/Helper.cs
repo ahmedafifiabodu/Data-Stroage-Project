@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+
 namespace Assignment_4
 {
     public static class Helper
@@ -33,79 +34,47 @@ namespace Assignment_4
             MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
         }
 
-
-
-
-
-
         public static void Deserialize(string NameOfList)
         {
-            StreamReader read = new StreamReader(open.FileName);
-
-
             if (open.ShowDialog() == DialogResult.OK)
             {
-
-
+                StreamReader read = new StreamReader(open.FileName);
                 if (Path.GetExtension(open.FileName).ToLower() == ".xml")
                 {
-
                     switch (NameOfList)
                     {
-
                         case "staff":
                             SaffList = (List<Staff_Info>)xml.Deserialize(read);
                             break;
-
 
                         case "customer":
                             CustomerList = (List<CustomerInfo>)xml.Deserialize(read);
                             break;
 
-
-
                         case "order":
                             OrderList = (List<OrderNow>)xml.Deserialize(read);
                             break;
                     }
-
-
-
                 }
                 else
                 {
-
-
                     switch (NameOfList)
                     {
-
                         case "staff":
                             SaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
                             break;
-
 
                         case "customer":
                             CustomerList = JsonConvert.DeserializeObject<List<CustomerInfo>>(read.ReadToEnd());
                             break;
 
-
-
                         case "order":
                             OrderList = JsonConvert.DeserializeObject<List<OrderNow>>(read.ReadToEnd());
                             break;
                     }
-
                 }
             }
-
-
-
         }
-
-
-
-
-
 
         public static void NewOrder(string name, string price, decimal quantity)
         {
@@ -120,10 +89,8 @@ namespace Assignment_4
                 {
                     if (Path.GetExtension(save.FileName).ToLower() == ".xml")
                         Serialize(OrderList, false);
-
                     else
                         Serialize(OrderList, true);
-
                 }
             }
         }

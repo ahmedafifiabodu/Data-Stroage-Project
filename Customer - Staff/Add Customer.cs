@@ -1,44 +1,44 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Assignment_4.Customer___Staff
 {
     public partial class Add_Customer : UserControl
     {
-        private static List<CustomerInfo> LCI = new List<CustomerInfo>();
+        private static List<CustomerInfo> ListCustomerInfo = new List<CustomerInfo>();
         private CustomerInfo CI = new CustomerInfo();
         private SaveFileDialog Save = new SaveFileDialog();
+        private static JsonSerializer JSONserializer = new JsonSerializer();
 
         public Add_Customer()
         {
             InitializeComponent();
-            Save.Filter = "XML files (*.xml)|*.xml";
+            Save.Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json";
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-          Helper.CustomerList.Add(new CustomerInfo(
-                textBoxFirstName.Text,
-                textBoxLastName.Text,
-                textBoxStreetAddress.Text,
-                textBoxStreetAddressLine2.Text,
-                textBoxCity.Text,
-                textBoxStateProvince.Text,
-                int.Parse(textBoxPostalZipCode.Text),
-                textBoxPhone.Text,
-                textBoxEmail.Text,
-                comboBoxHearAboutUs.SelectedItem.ToString(),
-                richTextBoxFeedback.Text,
-                richTextBoxSuggestions.Text,
-                combo_recommend.SelectedItem.ToString()));
+            Helper.CustomerList.Add(new CustomerInfo(
+                  textBoxFirstName.Text,
+                  textBoxLastName.Text,
+                  textBoxStreetAddress.Text,
+                  textBoxStreetAddressLine2.Text,
+                  textBoxCity.Text,
+                  textBoxStateProvince.Text,
+                  int.Parse(textBoxPostalZipCode.Text),
+                  textBoxPhone.Text,
+                  textBoxEmail.Text,
+                  comboBoxHearAboutUs.SelectedItem.ToString(),
+                  richTextBoxFeedback.Text,
+                  richTextBoxSuggestions.Text,
+                  combo_recommend.SelectedItem.ToString()));
 
             MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace Assignment_4.Customer___Staff
 
             if (dialogResult == DialogResult.Yes)
             {
-                LCI.AddRange(new CustomerInfo[] {
+                ListCustomerInfo.AddRange(new CustomerInfo[] {
                             new CustomerInfo(textBoxFirstName.Text, textBoxLastName.Text, textBoxStreetAddress.Text, textBoxStreetAddressLine2.Text,
                             textBoxCity.Text, textBoxStateProvince.Text, Convert.ToInt32(textBoxPostalZipCode.Text), textBoxPhone.Text, textBoxEmail.Text, comboBoxHearAboutUs.SelectedItem.ToString(),
                             richTextBoxFeedback.Text, richTextBoxSuggestions.Text, checkedButton.Text)
@@ -58,15 +58,22 @@ namespace Assignment_4.Customer___Staff
             {
                 if (Save.ShowDialog() == DialogResult.OK)
                 {
-                    LCI.AddRange(new CustomerInfo[] {
+                    ListCustomerInfo.AddRange(new CustomerInfo[] {
                             new CustomerInfo(textBoxFirstName.Text, textBoxLastName.Text, textBoxStreetAddress.Text, textBoxStreetAddressLine2.Text,
                             textBoxCity.Text, textBoxStateProvince.Text, Convert.ToInt32(textBoxPostalZipCode.Text), textBoxPhone.Text, textBoxEmail.Text, comboBoxHearAboutUs.SelectedItem.ToString(),
                             richTextBoxFeedback.Text, richTextBoxSuggestions.Text, checkedButton.Text)
                             });
 
                     StreamWriter sw = new StreamWriter(Save.FileName);
-                    CI.xmlCI.Serialize(sw, LCI);
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
+                    if (Path.GetExtension(Save.FileName).ToLower() == ".json")
+                    {
+                        JSONserializer.Serialize(sw, ListCustomerInfo);
+                    }
+                    else
+                    {
+                        CI.xmlCI.Serialize(sw, ListCustomerInfo);
+                        MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
+                    }
                     sw.Close();
                 }
             }
@@ -138,17 +145,14 @@ namespace Assignment_4.Customer___Staff
         {
             foreach (Control rb in Controls)
             {
-
                 if (rb is RadioButton)
                     (rb as RadioButton).Checked = false;
 
                 if (rb is TextBox)
                     (rb as TextBox).Clear();
 
-
                 if (rb is RichTextBox)
                     (rb as RichTextBox).Clear();
-
             }
 
             comboBoxHearAboutUs.Text = "Please Select";
@@ -159,7 +163,6 @@ namespace Assignment_4.Customer___Staff
 
             textBoxEmail.Text = "ex: email@yahoo.com";
             textBoxEmail.ForeColor = SystemColors.GrayText;
-
         }
 
         private void comboBoxHearAboutUs_KeyDown(object sender, KeyEventArgs e)
