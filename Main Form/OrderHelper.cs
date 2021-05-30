@@ -18,16 +18,17 @@ namespace Assignment_4
         public static void Serialize(bool ExportJson = false)
         {
             StreamWriter StreamWriter = new StreamWriter(save.FileName);
+
             if (ExportJson == true)
             {
                 JSONserializer.Serialize(StreamWriter, OrderList);
-                OrderList.Clear();
             }
             else
             {
                 xml.Serialize(StreamWriter, OrderList);
-                OrderList.Clear();
             }
+
+            OrderList.Clear();
             StreamWriter.Close();
 
             MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
