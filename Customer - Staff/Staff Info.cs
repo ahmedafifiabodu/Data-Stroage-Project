@@ -10,9 +10,10 @@ namespace Assignment_4.Customer___Staff
     [Serializable]
     public class Staff_Info
     {
-        public XmlSerializer xmlSI = new XmlSerializer(typeof(List<Staff_Info>));
-
+        [NonSerialized]
         private Bitmap UploadCoverLetterPicture;
+
+        [NonSerialized]
         private Bitmap UploadResumePicture;
 
         public string FirstName;
@@ -26,8 +27,6 @@ namespace Assignment_4.Customer___Staff
         public string Email;
         public string ApplyForPosition;
         public string WhenYouCanStart;
-        public string UploadCoverLetter;
-        public string UploadResume;
         public string YourComment;
 
         //[XmlElementAttribute("UploadCoverLetter")]
@@ -48,10 +47,10 @@ namespace Assignment_4.Customer___Staff
 
             set
             {
-                if (value != null)
+                if (value != null && value.Length !=0)
                     UploadCoverLetterPicture = new Bitmap(new MemoryStream(value));
                 else
-                    UploadCoverLetterPicture = null;
+                    UploadCoverLetterPicture = new Bitmap(1, 1);
             }
         }
 
@@ -73,10 +72,10 @@ namespace Assignment_4.Customer___Staff
 
             set
             {
-                if (value != null)
+                if (value != null && value.Length != 0)
                     UploadResumePicture = new Bitmap(new MemoryStream(value));
                 else
-                    UploadResumePicture = null;
+                    UploadResumePicture = new Bitmap(1, 1);
             }
         }
 

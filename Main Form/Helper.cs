@@ -11,31 +11,60 @@ namespace Assignment_4
     {
         public static List<OrderNow> OrderList = new List<OrderNow>();
         public static List<CustomerInfo> CustomerList = new List<CustomerInfo>();
-        public static List<Staff_Info> SaffList = new List<Staff_Info>();
+        public static List<Staff_Info> StaffList = new List<Staff_Info>();
 
         private static SaveFileDialog save = new SaveFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
         private static OpenFileDialog open = new OpenFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
 
         public static JsonSerializer JSONserializer = new JsonSerializer();
-        public static XmlSerializer xml = new XmlSerializer(typeof(List<OrderNow>));
+        public static XmlSerializer xml;
 
-        public static void Serialize(object Serilizeable, bool ExportJson = false)
+        public static void Serialize(dynamic Serilizeable, bool silentSave = false)
         {
-            StreamWriter sw = new StreamWriter(save.FileName);
-            if (ExportJson == true)
+            string filename="";
+
+            if (silentSave == true)
+                filename = open.FileName;
+
+            if (silentSave == false)
+                if (save.ShowDialog() == DialogResult.OK)
+                    filename = save.FileName;
+
+
+
+            if (File.Exists(filename))
             {
-                JSONserializer.Serialize(sw, Serilizeable);
-            }
-            else
+
+                if (silentSave)
+                    File.Delete(filename);
+
+            StreamWriter sw = new StreamWriter(filename);
+                
+            if (Path.GetExtension(filename).ToLower() == ".xml")
             {
+                xml = new XmlSerializer(Serilizeable);
                 xml.Serialize(sw, Serilizeable);
             }
-            sw.Close();
-            MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
+            else
+                JSONserializer.Serialize(sw, Serilizeable);
+
+
+                if (silentSave== true)
+                    MessageBox.Show("Saved Successfully", "Done");
+
+                else
+                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
+
+
+
+            }
+
         }
 
         public static void Deserialize(string NameOfList)
         {
+
+
             if (open.ShowDialog() == DialogResult.OK)
             {
                 StreamReader read = new StreamReader(open.FileName);
@@ -44,14 +73,17 @@ namespace Assignment_4
                     switch (NameOfList)
                     {
                         case "staff":
-                            SaffList = (List<Staff_Info>)xml.Deserialize(read);
+                            xml = new XmlSerializer(typeof(List<Staff_Info>));
+                            StaffList = (List<Staff_Info>)xml.Deserialize(read);
                             break;
 
                         case "customer":
+                            xml = new XmlSerializer(typeof(List<CustomerInfo>));
                             CustomerList = (List<CustomerInfo>)xml.Deserialize(read);
                             break;
 
                         case "order":
+                            xml = new XmlSerializer(typeof(List<OrderNow>));
                             OrderList = (List<OrderNow>)xml.Deserialize(read);
                             break;
                     }
@@ -61,7 +93,7 @@ namespace Assignment_4
                     switch (NameOfList)
                     {
                         case "staff":
-                            SaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
+                            StaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
                             break;
 
                         case "customer":
@@ -88,9 +120,9 @@ namespace Assignment_4
                 if (save.ShowDialog() == DialogResult.OK)
                 {
                     if (Path.GetExtension(save.FileName).ToLower() == ".xml")
-                        Serialize(OrderList, false);
+                        Serialize(OrderList);
                     else
-                        Serialize(OrderList, true);
+                        Serialize(OrderList);
                 }
             }
         }

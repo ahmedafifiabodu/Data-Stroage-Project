@@ -8,7 +8,7 @@ namespace Assignment_4.Customer___Staff
 {
     public partial class Add_Staff : UserControl
     {
-        private static List<Staff_Info> LSI = new List<Staff_Info>();
+
         private Staff_Info SI = new Staff_Info();
 
         private SaveFileDialog save = new SaveFileDialog();
@@ -169,61 +169,29 @@ namespace Assignment_4.Customer___Staff
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to order more ?", "Question?", MessageBoxButtons.YesNo);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                LSI.AddRange(new Staff_Info[] {
-                            new Staff_Info(
-                                textBoxFirstName.Text,
-                                textBoxLastName.Text,
-                                textBoxStreetAddress.Text,
-                                textBoxStreetAddressLine2.Text,
-                                textBoxCity.Text,
-                                textBoxStateProvince.Text,
-                                Convert.ToInt32(textBoxPostalZipCode.Text),
-                                textBoxPhone.Text,
-                                textBoxEmail.Text,
-                                textBoxApplyForPosition.Text,
-                                textBoxWhenYouCanStart.Text,
-                                Convert.ToBase64String(CoverLetterImage),
-                                Convert.ToBase64String(UploadResumeImage),
-                                richTextBoxYourComment.Text)
-                            });
-            }
-            else
-            {
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    LSI.AddRange(new Staff_Info[] {
-                            new Staff_Info(
-                                textBoxFirstName.Text,
-                                textBoxLastName.Text,
-                                textBoxStreetAddress.Text,
-                                textBoxStreetAddressLine2.Text,
-                                textBoxCity.Text,
-                                textBoxStateProvince.Text,
-                                Convert.ToInt32(textBoxPostalZipCode.Text),
-                                textBoxPhone.Text,
-                                textBoxEmail.Text,
-                                textBoxApplyForPosition.Text,
-                                textBoxWhenYouCanStart.Text,
-                                Convert.ToBase64String(CoverLetterImage),
-                                Convert.ToBase64String(UploadResumeImage),
-                                richTextBoxYourComment.Text)
-                            });
-
-                    StreamWriter sw = new StreamWriter(save.FileName);
-                    SI.xmlSI.Serialize(sw, LSI);
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
-                    LSI.Clear();
-                    sw.Close();
-                }
-            }
+            Helper.Serialize(Helper.StaffList);
+            MessageBox.Show("Loaded Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            Helper.StaffList.Add(new Staff_Info(
+                                textBoxFirstName.Text,
+                                textBoxLastName.Text,
+                                textBoxStreetAddress.Text,
+                                textBoxStreetAddressLine2.Text,
+                                textBoxCity.Text,
+                                textBoxStateProvince.Text,
+                                Convert.ToInt32(textBoxPostalZipCode.Text),
+                                textBoxPhone.Text,
+                                textBoxEmail.Text,
+                                textBoxApplyForPosition.Text,
+                                textBoxWhenYouCanStart.Text,
+                                Convert.ToBase64String(CoverLetterImage ?? new byte[] { }),
+                                Convert.ToBase64String(UploadResumeImage ?? new byte[] { }),
+                                richTextBoxYourComment.Text));
+            MessageBox.Show("Added Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
         }
     }
 }

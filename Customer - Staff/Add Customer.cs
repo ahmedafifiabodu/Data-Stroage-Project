@@ -24,59 +24,28 @@ namespace Assignment_4.Customer___Staff
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             Helper.CustomerList.Add(new CustomerInfo(
-                  textBoxFirstName.Text,
-                  textBoxLastName.Text,
-                  textBoxStreetAddress.Text,
-                  textBoxStreetAddressLine2.Text,
-                  textBoxCity.Text,
-                  textBoxStateProvince.Text,
-                  int.Parse(textBoxPostalZipCode.Text),
-                  textBoxPhone.Text,
-                  textBoxEmail.Text,
-                  comboBoxHearAboutUs.SelectedItem.ToString(),
-                  richTextBoxFeedback.Text,
-                  richTextBoxSuggestions.Text,
-                  combo_recommend.SelectedItem.ToString()));
+                    textBoxFirstName.Text,
+                    textBoxLastName.Text,
+                    textBoxStreetAddress.Text,
+                    textBoxStreetAddressLine2.Text,
+                    textBoxCity.Text,
+                    textBoxStateProvince.Text,
+                    Convert.ToInt32(textBoxPostalZipCode.Text),
+                    textBoxPhone.Text,
+                    textBoxEmail.Text,
+                    comboBoxHearAboutUs.SelectedItem.ToString(),
+                    richTextBoxFeedback.Text,
+                    richTextBoxSuggestions.Text,
+                    combo_recommend.SelectedItem.ToString()));
 
             MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to order more ?", "Question?", MessageBoxButtons.YesNo);
-            var checkedButton = Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
 
-            if (dialogResult == DialogResult.Yes)
-            {
-                ListCustomerInfo.AddRange(new CustomerInfo[] {
-                            new CustomerInfo(textBoxFirstName.Text, textBoxLastName.Text, textBoxStreetAddress.Text, textBoxStreetAddressLine2.Text,
-                            textBoxCity.Text, textBoxStateProvince.Text, Convert.ToInt32(textBoxPostalZipCode.Text), textBoxPhone.Text, textBoxEmail.Text, comboBoxHearAboutUs.SelectedItem.ToString(),
-                            richTextBoxFeedback.Text, richTextBoxSuggestions.Text, checkedButton.Text)
-                            });
-            }
-            else
-            {
-                if (Save.ShowDialog() == DialogResult.OK)
-                {
-                    ListCustomerInfo.AddRange(new CustomerInfo[] {
-                            new CustomerInfo(textBoxFirstName.Text, textBoxLastName.Text, textBoxStreetAddress.Text, textBoxStreetAddressLine2.Text,
-                            textBoxCity.Text, textBoxStateProvince.Text, Convert.ToInt32(textBoxPostalZipCode.Text), textBoxPhone.Text, textBoxEmail.Text, comboBoxHearAboutUs.SelectedItem.ToString(),
-                            richTextBoxFeedback.Text, richTextBoxSuggestions.Text, checkedButton.Text)
-                            });
+            Helper.Serialize(Helper.CustomerList);
 
-                    StreamWriter sw = new StreamWriter(Save.FileName);
-                    if (Path.GetExtension(Save.FileName).ToLower() == ".json")
-                    {
-                        JSONserializer.Serialize(sw, ListCustomerInfo);
-                    }
-                    else
-                    {
-                        CI.xmlCI.Serialize(sw, ListCustomerInfo);
-                        MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
-                    }
-                    sw.Close();
-                }
-            }
         }
 
         private void TextBoxPhone_Leave(object sender, EventArgs e)
