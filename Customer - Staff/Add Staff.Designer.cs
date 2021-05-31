@@ -780,6 +780,7 @@ namespace Assignment_4.Customer___Staff
             this.Controls.Add(this.labelAddress);
             this.Name = "Add_Staff";
             this.Size = new System.Drawing.Size(715, 470);
+            this.Load += new System.EventHandler(this.Add_Staff_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoverLetter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUploadResume)).EndInit();
             this.ResumeLayout(false);

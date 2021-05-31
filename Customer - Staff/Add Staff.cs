@@ -155,6 +155,8 @@ namespace Assignment_4.Customer___Staff
             {
                 pictureBoxCoverLetter.Image = new Bitmap(OpenImage.FileName);
                 CoverLetterImage = File.ReadAllBytes(OpenImage.FileName);
+
+
             }
         }
 
@@ -170,7 +172,7 @@ namespace Assignment_4.Customer___Staff
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             Helper.Serialize(Helper.StaffList);
-            MessageBox.Show("Loaded Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            MessageBox.Show("Saved Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -187,10 +189,16 @@ namespace Assignment_4.Customer___Staff
                                 textBoxEmail.Text,
                                 textBoxApplyForPosition.Text,
                                 textBoxWhenYouCanStart.Text,
-                                Convert.ToBase64String(CoverLetterImage ?? new byte[] { }),
-                                Convert.ToBase64String(UploadResumeImage ?? new byte[] { }),
+                                Convert.ToBase64String(CoverLetterImage),
+                                Convert.ToBase64String(UploadResumeImage),
                                 richTextBoxYourComment.Text));
+
             MessageBox.Show("Added Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+        }
+
+        private void Add_Staff_Load(object sender, EventArgs e)
+        {
 
         }
     }

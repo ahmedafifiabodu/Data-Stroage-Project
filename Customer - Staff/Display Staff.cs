@@ -46,8 +46,8 @@ namespace Assignment_4.Customer___Staff
                 staff.Email,
                 staff.ApplyForPosition,
                 staff.WhenYouCanStart,
-                staff.UploadCoverLetterImage,
-                staff.UploadResumeImage,
+                staff.UploadCoverLetterPictureBase64,
+                staff.UploadResumePictureBase64,
                 staff.YourComment);
             }
 

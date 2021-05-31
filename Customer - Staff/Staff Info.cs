@@ -10,11 +10,10 @@ namespace Assignment_4.Customer___Staff
     [Serializable]
     public class Staff_Info
     {
-        [NonSerialized]
-        private Bitmap UploadCoverLetterPicture;
 
-        [NonSerialized]
-        private Bitmap UploadResumePicture;
+        public string UploadCoverLetterPictureBase64;
+
+        public string UploadResumePictureBase64;
 
         public string FirstName;
         public string LastName;
@@ -29,55 +28,6 @@ namespace Assignment_4.Customer___Staff
         public string WhenYouCanStart;
         public string YourComment;
 
-        //[XmlElementAttribute("UploadCoverLetter")]
-        public byte[] UploadCoverLetterImage
-        {
-            get
-            {
-                if (UploadCoverLetterPicture != null)
-                {
-                    TypeConverter BitmapConverter =
-                         TypeDescriptor.GetConverter(UploadCoverLetterPicture.GetType());
-                    return (byte[])
-                         BitmapConverter.ConvertTo(UploadCoverLetterPicture, typeof(byte[]));
-                }
-                else
-                    return null;
-            }
-
-            set
-            {
-                if (value != null && value.Length !=0)
-                    UploadCoverLetterPicture = new Bitmap(new MemoryStream(value));
-                else
-                    UploadCoverLetterPicture = new Bitmap(1, 1);
-            }
-        }
-
-        //[XmlElementAttribute("UploadResume")]
-        public byte[] UploadResumeImage
-        {
-            get
-            {
-                if (UploadResumePicture != null)
-                {
-                    TypeConverter BitmapConverter =
-                         TypeDescriptor.GetConverter(UploadResumePicture.GetType());
-                    return (byte[])
-                         BitmapConverter.ConvertTo(UploadResumePicture, typeof(byte[]));
-                }
-                else
-                    return null;
-            }
-
-            set
-            {
-                if (value != null && value.Length != 0)
-                    UploadResumePicture = new Bitmap(new MemoryStream(value));
-                else
-                    UploadResumePicture = new Bitmap(1, 1);
-            }
-        }
 
         public Staff_Info()
         {
@@ -98,8 +48,8 @@ namespace Assignment_4.Customer___Staff
             this.Email = Email;
             this.ApplyForPosition = ApplyForPosition;
             this.WhenYouCanStart = WhenYouCanStart;
-            this.UploadCoverLetterImage = Convert.FromBase64String(UploadCoverLetter);
-            this.UploadResumeImage = Convert.FromBase64String(UploadResume);
+            this.UploadCoverLetterPictureBase64 = UploadCoverLetter;
+            this.UploadResumePictureBase64 = UploadResume;
             this.YourComment = YourComment;
         }
     }

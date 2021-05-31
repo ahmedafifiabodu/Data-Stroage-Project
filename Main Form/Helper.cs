@@ -32,8 +32,7 @@ namespace Assignment_4
 
 
 
-            if (File.Exists(filename))
-            {
+          
 
                 if (silentSave)
                     File.Delete(filename);
@@ -57,7 +56,7 @@ namespace Assignment_4
 
 
 
-            }
+            
 
         }
 
