@@ -1,18 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Assignment_4
 {
     public partial class SteaksMenu : UserControl
     {
-        private OrderNow STEAKSMENU = new OrderNow();
-        private SaveFileDialog save = new SaveFileDialog();
-
         public SteaksMenu()
         {
             InitializeComponent();
-            save.Filter = "XML files (*.xml)|*.xml";
         }
 
         private void buttonOrderNow1_Click(object sender, EventArgs e)
@@ -23,7 +18,6 @@ namespace Assignment_4
         private void buttonOrderNow2_Click(object sender, EventArgs e)
         {
             Helper.NewOrder(labelSteakName2.Text, labelSteakPrice2.Text, SteaksNumericUpDown2.Value);
-  
         }
 
         private void buttonOrderNow3_Click(object sender, EventArgs e)

@@ -13,15 +13,15 @@ namespace Assignment_4
         public static List<CustomerInfo> CustomerList = new List<CustomerInfo>();
         public static List<Staff_Info> StaffList = new List<Staff_Info>();
 
-        private static SaveFileDialog save = new SaveFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
-        private static OpenFileDialog open = new OpenFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
+        private static readonly SaveFileDialog save = new SaveFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
+        private static readonly OpenFileDialog open = new OpenFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
 
         public static JsonSerializer JSONserializer = new JsonSerializer();
         public static XmlSerializer xml;
 
         public static void Serialize(dynamic Serilizeable, bool silentSave = false)
         {
-            string filename="";
+            string filename = "";
 
             if (silentSave == true)
                 filename = open.FileName;
@@ -30,40 +30,109 @@ namespace Assignment_4
                 if (save.ShowDialog() == DialogResult.OK)
                     filename = save.FileName;
 
-
-
-          
-
+            if (File.Exists(filename))
+            {
                 if (silentSave)
                     File.Delete(filename);
 
-            StreamWriter sw = new StreamWriter(filename);
-                
-            if (Path.GetExtension(filename).ToLower() == ".xml")
-            {
-                xml = new XmlSerializer(Serilizeable);
-                xml.Serialize(sw, Serilizeable);
-            }
-            else
-                JSONserializer.Serialize(sw, Serilizeable);
+                StreamWriter sw = new StreamWriter(filename);
 
+                if (Serilizeable == OrderList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<OrderNow>));
+                        xml.Serialize(sw, OrderList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, OrderList);
 
-                if (silentSave== true)
+                    OrderList.Clear();
+                }
+                else if (Serilizeable == CustomerList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<CustomerInfo>));
+                        xml.Serialize(sw, CustomerList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, CustomerList);
+
+                    CustomerList.Clear();
+                }
+                else if (Serilizeable == StaffList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<Staff_Info>));
+                        xml.Serialize(sw, StaffList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, StaffList);
+
+                    StaffList.Clear();
+                }
+
+                if (silentSave == true)
                     MessageBox.Show("Saved Successfully", "Done");
-
                 else
                     MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
 
+                sw.Close();
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter(filename);
 
+                if (Serilizeable == OrderList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<OrderNow>));
+                        xml.Serialize(sw, OrderList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, OrderList);
 
-            
+                    OrderList.Clear();
+                }
+                else if (Serilizeable == CustomerList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<CustomerInfo>));
+                        xml.Serialize(sw, CustomerList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, CustomerList);
 
+                    CustomerList.Clear();
+                }
+                else if (Serilizeable == StaffList)
+                {
+                    if (Path.GetExtension(filename).ToLower() == ".xml")
+                    {
+                        xml = new XmlSerializer(typeof(List<Staff_Info>));
+                        xml.Serialize(sw, StaffList);
+                    }
+                    else
+                        JSONserializer.Serialize(sw, StaffList);
+
+                    StaffList.Clear();
+                }
+
+                if (silentSave == true)
+                    MessageBox.Show("Saved Successfully", "Done");
+                else
+                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
+
+                sw.Close();
+            }
         }
 
         public static void Deserialize(string NameOfList)
         {
-
-
             if (open.ShowDialog() == DialogResult.OK)
             {
                 StreamReader read = new StreamReader(open.FileName);
@@ -116,13 +185,8 @@ namespace Assignment_4
             }
             else if (dialogResult == DialogResult.No)
             {
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    if (Path.GetExtension(save.FileName).ToLower() == ".xml")
-                        Serialize(OrderList);
-                    else
-                        Serialize(OrderList);
-                }
+                OrderList.Add(new OrderNow(name, price, quantity));
+                Serialize(OrderList, false);
             }
         }
     }

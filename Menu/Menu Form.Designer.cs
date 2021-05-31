@@ -382,7 +382,6 @@ namespace Assignment_4
             this.DessertMenu.Name = "DessertMenu";
             this.DessertMenu.Size = new System.Drawing.Size(770, 477);
             this.DessertMenu.TabIndex = 20;
-            this.DessertMenu.Load += new System.EventHandler(this.DessertMenu_Load);
             // 
             // SteaksMenu
             // 

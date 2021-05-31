@@ -135,7 +135,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonView.Text = "View";
             this.buttonView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonView.UseVisualStyleBackColor = true;
-            this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
+            this.buttonView.Click += new System.EventHandler(this.ButtonView_Click);
             // 
             // buttonAdd
             // 
