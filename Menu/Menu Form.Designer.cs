@@ -342,7 +342,7 @@ namespace Assignment_4
             this.buttonDeserialization.Text = "Deserialization";
             this.buttonDeserialization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDeserialization.UseVisualStyleBackColor = true;
-            this.buttonDeserialization.Click += new System.EventHandler(this.buttonDeserialization_Click);
+            this.buttonDeserialization.Click += new System.EventHandler(this.ButtonDeserialization_Click);
             // 
             // buttonAddStaffCustomer
             // 

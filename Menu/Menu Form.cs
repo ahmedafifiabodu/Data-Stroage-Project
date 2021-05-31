@@ -71,9 +71,8 @@ namespace Assignment_4
             Environment.Exit(1);
         }
 
-        private void buttonDeserialization_Click(object sender, EventArgs e)
+        private void ButtonDeserialization_Click(object sender, EventArgs e)
         {
-            OrderView.dataGridView1.Rows.Clear();
             OrderView.labelOrderCount.Text = "";
 
             Helper.Deserialize("order");

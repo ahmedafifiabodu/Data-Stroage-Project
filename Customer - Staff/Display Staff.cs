@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Assignment_4.Customer___Staff
 {
     public partial class Display_Staff : UserControl
     {
-        private static List<Staff_Info> LSI = new List<Staff_Info>();
-        private Staff_Info SI = new Staff_Info();
-
         private SaveFileDialog Save = new SaveFileDialog();
         private OpenFileDialog Open = new OpenFileDialog();
 
@@ -25,9 +19,8 @@ namespace Assignment_4.Customer___Staff
             Open.Filter = "XML files (*.xml)|*.xml";
         }
 
-        private void buttonView_Click(object sender, EventArgs e)
+        private void ButtonView_Click(object sender, EventArgs e)
         {
-
             Helper.Deserialize("staff");
             dataGridView1.RowTemplate.MinimumHeight = 100;
             dataGridView1.Rows.Clear();
@@ -53,11 +46,7 @@ namespace Assignment_4.Customer___Staff
 
             ((DataGridViewImageColumn)dataGridView1.Columns[11]).ImageLayout = DataGridViewImageCellLayout.Stretch;
             ((DataGridViewImageColumn)dataGridView1.Columns[12]).ImageLayout = DataGridViewImageCellLayout.Stretch;
-
         }
-
-
-
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -65,7 +54,6 @@ namespace Assignment_4.Customer___Staff
 
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-
                 string baseImage1 = "";
                 string baseImage2 = "";
 
@@ -76,10 +64,9 @@ namespace Assignment_4.Customer___Staff
                 }
                 else
                 {
-                    baseImage1 ="";
-                    baseImage2 ="";
+                    baseImage1 = "";
+                    baseImage2 = "";
                 }
-
 
                 Helper.StaffList.Add(new
                 Staff_Info(
@@ -96,15 +83,11 @@ namespace Assignment_4.Customer___Staff
                 dataGridView1.Rows[i].Cells[10].Value.ToString() ?? "",
                 baseImage1,
                 baseImage2,
-                dataGridView1.Rows[i].Cells[13].Value.ToString() ??""
+                dataGridView1.Rows[i].Cells[13].Value.ToString() ?? ""
                 ));
-                }
+            }
 
-
-          
-            Helper.Serialize(Helper.StaffList ,true);
-
-
+            Helper.Serialize(Helper.StaffList, true);
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)

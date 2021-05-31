@@ -1,24 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Assignment_4.Customer___Staff
 {
     public partial class Add_Customer : UserControl
     {
-        private static List<CustomerInfo> ListCustomerInfo = new List<CustomerInfo>();
-        private CustomerInfo CI = new CustomerInfo();
-        private SaveFileDialog Save = new SaveFileDialog();
-        private static JsonSerializer JSONserializer = new JsonSerializer();
-
         public Add_Customer()
         {
             InitializeComponent();
-            Save.Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json";
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -43,9 +33,7 @@ namespace Assignment_4.Customer___Staff
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-
             Helper.Serialize(Helper.CustomerList);
-
         }
 
         private void TextBoxPhone_Leave(object sender, EventArgs e)
