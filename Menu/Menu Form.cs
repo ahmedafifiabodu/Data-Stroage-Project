@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Assignment_4
 {
     public partial class Menu_Form : Form
     {
-        private OpenFileDialog Open = new OpenFileDialog() { Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json" };
-
         // Navigate Based On Clicked Button Location
         private void navigate(int top)
         {
@@ -71,7 +65,7 @@ namespace Assignment_4
             Environment.Exit(1);
         }
 
-        private void ButtonDeserialization_Click(object sender, EventArgs e)
+        private void buttonDeserialization_Click(object sender, EventArgs e)
         {
             OrderView.labelOrderCount.Text = "";
 
@@ -125,10 +119,6 @@ namespace Assignment_4
         private void HomeOrder_Click(object sender, MouseEventArgs e)
         {
             OrderView.Visible = false;
-        }
-
-        private void DessertMenu_Load(object sender, EventArgs e)
-        {
         }
     }
 }

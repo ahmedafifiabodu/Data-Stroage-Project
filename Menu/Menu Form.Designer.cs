@@ -342,7 +342,7 @@ namespace Assignment_4
             this.buttonDeserialization.Text = "Deserialization";
             this.buttonDeserialization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDeserialization.UseVisualStyleBackColor = true;
-            this.buttonDeserialization.Click += new System.EventHandler(this.ButtonDeserialization_Click);
+            this.buttonDeserialization.Click += new System.EventHandler(this.buttonDeserialization_Click);
             // 
             // buttonAddStaffCustomer
             // 
@@ -382,7 +382,6 @@ namespace Assignment_4
             this.DessertMenu.Name = "DessertMenu";
             this.DessertMenu.Size = new System.Drawing.Size(770, 477);
             this.DessertMenu.TabIndex = 20;
-            this.DessertMenu.Load += new System.EventHandler(this.DessertMenu_Load);
             // 
             // SteaksMenu
             // 

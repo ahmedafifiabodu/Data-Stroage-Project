@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace Assignment_4
 {
     [Serializable]
     public class OrderNow
     {
-
         public string name;
         public string price;
         public decimal quantity;
