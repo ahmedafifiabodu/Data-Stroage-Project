@@ -30,11 +30,8 @@ namespace Assignment_4.Customer___Staff
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_Customer));
-            this.radioButtonNo = new System.Windows.Forms.RadioButton();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.radioButtonMaybe = new System.Windows.Forms.RadioButton();
-            this.radioButtonYes = new System.Windows.Forms.RadioButton();
             this.richTextBoxSuggestions = new System.Windows.Forms.RichTextBox();
             this.richTextBoxFeedback = new System.Windows.Forms.RichTextBox();
             this.comboBoxHearAboutUs = new System.Windows.Forms.ComboBox();
@@ -66,18 +63,6 @@ namespace Assignment_4.Customer___Staff
             this.buttonClear = new System.Windows.Forms.Button();
             this.combo_recommend = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // radioButtonNo
-            // 
-            this.radioButtonNo.AutoSize = true;
-            this.radioButtonNo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonNo.Location = new System.Drawing.Point(503, 351);
-            this.radioButtonNo.Name = "radioButtonNo";
-            this.radioButtonNo.Size = new System.Drawing.Size(43, 21);
-            this.radioButtonNo.TabIndex = 94;
-            this.radioButtonNo.TabStop = true;
-            this.radioButtonNo.Text = "No";
-            this.radioButtonNo.UseVisualStyleBackColor = true;
             // 
             // buttonSubmit
             // 
@@ -114,30 +99,6 @@ namespace Assignment_4.Customer___Staff
             this.buttonAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
-            // 
-            // radioButtonMaybe
-            // 
-            this.radioButtonMaybe.AutoSize = true;
-            this.radioButtonMaybe.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonMaybe.Location = new System.Drawing.Point(430, 351);
-            this.radioButtonMaybe.Name = "radioButtonMaybe";
-            this.radioButtonMaybe.Size = new System.Drawing.Size(67, 21);
-            this.radioButtonMaybe.TabIndex = 93;
-            this.radioButtonMaybe.TabStop = true;
-            this.radioButtonMaybe.Text = "Maybe";
-            this.radioButtonMaybe.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonYes
-            // 
-            this.radioButtonYes.AutoSize = true;
-            this.radioButtonYes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonYes.Location = new System.Drawing.Point(376, 351);
-            this.radioButtonYes.Name = "radioButtonYes";
-            this.radioButtonYes.Size = new System.Drawing.Size(46, 21);
-            this.radioButtonYes.TabIndex = 92;
-            this.radioButtonYes.TabStop = true;
-            this.radioButtonYes.Text = "Yes";
-            this.radioButtonYes.UseVisualStyleBackColor = true;
             // 
             // richTextBoxSuggestions
             // 
@@ -468,7 +429,7 @@ namespace Assignment_4.Customer___Staff
             "Yes",
             "Maybe",
             "No"});
-            this.combo_recommend.Location = new System.Drawing.Point(376, 378);
+            this.combo_recommend.Location = new System.Drawing.Point(376, 348);
             this.combo_recommend.Name = "combo_recommend";
             this.combo_recommend.Size = new System.Drawing.Size(185, 21);
             this.combo_recommend.TabIndex = 105;
@@ -479,11 +440,8 @@ namespace Assignment_4.Customer___Staff
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.combo_recommend);
             this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.radioButtonNo);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.radioButtonMaybe);
-            this.Controls.Add(this.radioButtonYes);
             this.Controls.Add(this.richTextBoxSuggestions);
             this.Controls.Add(this.richTextBoxFeedback);
             this.Controls.Add(this.comboBoxHearAboutUs);
@@ -520,12 +478,8 @@ namespace Assignment_4.Customer___Staff
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton radioButtonNo;
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.RadioButton radioButtonMaybe;
-        private System.Windows.Forms.RadioButton radioButtonYes;
         private System.Windows.Forms.RichTextBox richTextBoxSuggestions;
         private System.Windows.Forms.RichTextBox richTextBoxFeedback;
         private System.Windows.Forms.ComboBox comboBoxHearAboutUs;

@@ -26,7 +26,7 @@ namespace Assignment_4.Customer___Staff
                     comboBoxHearAboutUs.SelectedItem.ToString(),
                     richTextBoxFeedback.Text,
                     richTextBoxSuggestions.Text,
-                    combo_recommend.SelectedItem.ToString()));
+                    combo_recommend.SelectedText ?? "none"));
 
             MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

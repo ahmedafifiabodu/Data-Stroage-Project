@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Assignment_4.Customer___Staff
 {
@@ -48,9 +50,9 @@ namespace Assignment_4.Customer___Staff
             ((DataGridViewImageColumn)dataGridView1.Columns[12]).ImageLayout = DataGridViewImageCellLayout.Stretch;
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            Helper.StaffList.Clear();
+            /*Helper.StaffList.Clear();
 
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
@@ -88,40 +90,54 @@ namespace Assignment_4.Customer___Staff
             }
 
             Helper.Serialize(Helper.StaffList, true);
-        }
+            */
 
-        private void buttonSubmit_Click(object sender, EventArgs e)
-        {
             if (Save.ShowDialog() == DialogResult.OK)
             {
-                List<Staff_Info> ListCoustomerInfo = new List<Staff_Info>();
-
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                try
                 {
-                    ListCoustomerInfo.AddRange(new Staff_Info[] { new Staff_Info(
-                        dataGridView1.Rows[i].Cells["FirstName"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["LastName"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["StreetAddress"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["StreetAddressLine2"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["City"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["StateProvince"].Value.ToString(),
-                        Convert.ToInt32(dataGridView1.Rows[i].Cells["PostalZipCode"].Value),
-                        dataGridView1.Rows[i].Cells["Phone"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["Email"].Value.ToString(),
+                            using (var stream = File.Open(Save.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                            using (var reader = XmlReader.Create(stream))
+                            {
+                                XDocument doc = XDocument.Load(reader);
+                                XElement StaffInfo = doc.Element("ArrayOfCustomerInfo");
 
-                        dataGridView1.Rows[i].Cells["ApplyForPosition"].Value.ToString(),
-                        dataGridView1.Rows[i].Cells["WhenYouCanStart"].Value.ToString(),
-                        Convert.ToBase64String((byte[])dataGridView1.Rows[i].Cells["UploadCoverLetter"].Value),
-                        Convert.ToBase64String((byte[])dataGridView1.Rows[i].Cells["UploadResume"].Value),
-                        dataGridView1.Rows[i].Cells["YourComment"].Value.ToString()
-                            )});
+                                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                                {
+                                StaffInfo.Add(new XElement("Staff_Info",
+                            new XElement("FirstName", dataGridView1.Rows[i].Cells["FirstName"].Value),
+                            new XElement("LastName", dataGridView1.Rows[i].Cells["LastName"].Value),
+                            new XElement("StreetAddress", dataGridView1.Rows[i].Cells["StreetAddress"].Value),
+                            new XElement("StreetAddressLine2", dataGridView1.Rows[i].Cells["StreetAddressLine2"].Value),
+                            new XElement("City", dataGridView1.Rows[i].Cells["City"].Value),
+                            new XElement("StateProvince", dataGridView1.Rows[i].Cells["StateProvince"].Value),
+                            new XElement("PostalZipCode", dataGridView1.Rows[i].Cells["PostalZipCode"].Value),
+                            new XElement("Phone", dataGridView1.Rows[i].Cells["Phone"].Value),
+                            new XElement("Email", dataGridView1.Rows[i].Cells["Email"].Value),
+
+                            new XElement("ApplyForPosition", dataGridView1.Rows[i].Cells["ApplyForPosition"].Value),
+                            new XElement("WhenYouCanStart", dataGridView1.Rows[i].Cells["WhenYouCanStart"].Value),
+                            new XElement("YourComment", dataGridView1.Rows[i].Cells["YourComment"].Value),
+                            new XElement("UploadCoverLetterImage", Convert.ToBase64String((byte[])dataGridView1.Rows[i].Cells["UploadCoverLetter"].Value)),
+                            new XElement("UploadResumeImage", Convert.ToBase64String((byte[])dataGridView1.Rows[i].Cells["UploadResume"].Value)),
+                            new XElement("YourComment", dataGridView1.Rows[i].Cells["YourComment"].Value)));
+                            }
+                            stream.Close();
+                                reader.Close();
+                                doc.Save(Save.FileName);
+
+                                MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
+                            }
+
+                        
+                    }
+                
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("File Not Found !", "Error", MessageBoxButtons.OK);
                 }
-
-                StreamWriter streamWriter = new StreamWriter(Save.FileName);
-                // SI.xmlSI.Serialize(streamWriter, ListCoustomerInfo);
-                MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
-                streamWriter.Close();
             }
+
         }
     }
 }

@@ -171,13 +171,21 @@ namespace Assignment_4.Customer___Staff
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
+           
             Helper.Serialize(Helper.StaffList);
-            MessageBox.Show("Saved Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Helper.StaffList.Add(new Staff_Info(
+            if (CoverLetterImage == null || UploadResumeImage == null)
+            {
+                MessageBox.Show("Please select an image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+
+                Helper.StaffList.Add(new Staff_Info(
                                 textBoxFirstName.Text,
                                 textBoxLastName.Text,
                                 textBoxStreetAddress.Text,
@@ -193,13 +201,8 @@ namespace Assignment_4.Customer___Staff
                                 Convert.ToBase64String(UploadResumeImage),
                                 richTextBoxYourComment.Text));
 
-            MessageBox.Show("Added Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
-
-        }
-
-        private void Add_Staff_Load(object sender, EventArgs e)
-        {
-
+                MessageBox.Show("Added Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
         }
     }
 }

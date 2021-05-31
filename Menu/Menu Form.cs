@@ -85,7 +85,7 @@ namespace Assignment_4
             }
 
             OrderView.labelOrderCount.Text = "X" + Helper.OrderList.Count.ToString() + " Items";
-            MessageBox.Show("Please Hover On The Notify Button", "Alert!", MessageBoxButtons.OK);
+            
         }
 
         private void buttonAddStaffCustomer_Click(object sender, EventArgs e)

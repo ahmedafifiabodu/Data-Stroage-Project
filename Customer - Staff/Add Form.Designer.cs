@@ -238,9 +238,11 @@ namespace Assignment_4
             this.label5.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(337, 56);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 17);
+            this.label5.Size = new System.Drawing.Size(263, 85);
             this.label5.TabIndex = 6;
-            this.label5.Text = "By: Ahmed Afifi Abdou Afifi - Class 20";
+            this.label5.Text = "By:\r\n      Ahmed Afifi Abdou Afifi - Class 20\r\n      Ahmed Amen Ramadan - Class 2" +
+    "0\r\n      Wegdan Ahmed Omar Ahmed - Class 20\r\n      Evairna Kamal Anwr - Class 20" +
+    "";
             // 
             // buttonMenu
             // 

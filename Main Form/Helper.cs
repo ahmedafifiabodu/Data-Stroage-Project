@@ -29,15 +29,16 @@ namespace Assignment_4
             if (silentSave == false)
                 if (save.ShowDialog() == DialogResult.OK)
                     filename = save.FileName;
+                else
+                    return;
 
-            if (File.Exists(filename))
-            {
-                if (silentSave)
-                    File.Delete(filename);
+            
+                //if (silentSave)
+                //    File.Delete(filename);
 
                 StreamWriter sw = new StreamWriter(filename);
 
-                if (Serilizeable == OrderList)
+                if (   Serilizeable is List<OrderNow>)
                 {
                     if (Path.GetExtension(filename).ToLower() == ".xml")
                     {
@@ -49,7 +50,7 @@ namespace Assignment_4
 
                     OrderList.Clear();
                 }
-                else if (Serilizeable == CustomerList)
+                else if (Serilizeable is List <CustomerInfo>)
                 {
                     if (Path.GetExtension(filename).ToLower() == ".xml")
                     {
@@ -61,7 +62,7 @@ namespace Assignment_4
 
                     CustomerList.Clear();
                 }
-                else if (Serilizeable == StaffList)
+                else if (Serilizeable is List<Staff_Info>)
                 {
                     if (Path.GetExtension(filename).ToLower() == ".xml")
                     {
@@ -75,104 +76,70 @@ namespace Assignment_4
                 }
 
                 if (silentSave == true)
-                    MessageBox.Show("Saved Successfully", "Done");
-                else
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
-
-                sw.Close();
-            }
+                    MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-            {
-                StreamWriter sw = new StreamWriter(filename);
-
-                if (Serilizeable == OrderList)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<OrderNow>));
-                        xml.Serialize(sw, OrderList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, OrderList);
-
-                    OrderList.Clear();
-                }
-                else if (Serilizeable == CustomerList)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<CustomerInfo>));
-                        xml.Serialize(sw, CustomerList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, CustomerList);
-
-                    CustomerList.Clear();
-                }
-                else if (Serilizeable == StaffList)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<Staff_Info>));
-                        xml.Serialize(sw, StaffList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, StaffList);
-
-                    StaffList.Clear();
-                }
-
-                if (silentSave == true)
-                    MessageBox.Show("Saved Successfully", "Done");
-                else
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done");
+                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 sw.Close();
             }
-        }
+        
 
         public static void Deserialize(string NameOfList)
         {
-            if (open.ShowDialog() == DialogResult.OK)
+            try
             {
-                StreamReader read = new StreamReader(open.FileName);
-                if (Path.GetExtension(open.FileName).ToLower() == ".xml")
+                if (open.ShowDialog() == DialogResult.OK)
                 {
-                    switch (NameOfList)
+                    StreamReader read = new StreamReader(open.FileName);
+                    if (Path.GetExtension(open.FileName).ToLower() == ".xml")
                     {
-                        case "staff":
-                            xml = new XmlSerializer(typeof(List<Staff_Info>));
-                            StaffList = (List<Staff_Info>)xml.Deserialize(read);
-                            break;
+                        switch (NameOfList)
+                        {
+                            case "staff":
+                                StaffList.Clear();
+                                xml = new XmlSerializer(typeof(List<Staff_Info>));
+                                StaffList = (List<Staff_Info>)xml.Deserialize(read);
+                                break;
 
-                        case "customer":
-                            xml = new XmlSerializer(typeof(List<CustomerInfo>));
-                            CustomerList = (List<CustomerInfo>)xml.Deserialize(read);
-                            break;
+                            case "customer":
+                                CustomerList.Clear();
+                                xml = new XmlSerializer(typeof(List<CustomerInfo>));
+                                CustomerList = (List<CustomerInfo>)xml.Deserialize(read);
+                                break;
 
-                        case "order":
-                            xml = new XmlSerializer(typeof(List<OrderNow>));
-                            OrderList = (List<OrderNow>)xml.Deserialize(read);
-                            break;
+                            case "order":
+                                OrderList.Clear();
+                                xml = new XmlSerializer(typeof(List<OrderNow>));
+                                OrderList = (List<OrderNow>)xml.Deserialize(read);
+                                MessageBox.Show("Please Hover On The Notify Button", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (NameOfList)
+                        {
+                            case "staff":
+                                StaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
+                                break;
+
+                            case "customer":
+                                CustomerList = JsonConvert.DeserializeObject<List<CustomerInfo>>(read.ReadToEnd());
+                                break;
+
+                            case "order":
+                                OrderList = JsonConvert.DeserializeObject<List<OrderNow>>(read.ReadToEnd());
+                                MessageBox.Show("Please Hover On The Notify Button", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                                break;
+                        }
                     }
                 }
-                else
-                {
-                    switch (NameOfList)
-                    {
-                        case "staff":
-                            StaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
-                            break;
-
-                        case "customer":
-                            CustomerList = JsonConvert.DeserializeObject<List<CustomerInfo>>(read.ReadToEnd());
-                            break;
-
-                        case "order":
-                            OrderList = JsonConvert.DeserializeObject<List<OrderNow>>(read.ReadToEnd());
-                            break;
-                    }
-                }
+            }
+            catch
+            {
+                MessageBox.Show("Invaild File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
