@@ -19,70 +19,58 @@ namespace Assignment_4
         public static JsonSerializer JSONserializer = new JsonSerializer();
         public static XmlSerializer xml;
 
-        public static void Serialize(dynamic Serilizeable, bool silentSave = false)
+        public static void Serialize(dynamic Serilizeable)
         {
             string filename = "";
 
-            if (silentSave == true)
-                filename = open.FileName;
-
-            if (silentSave == false)
-                if (save.ShowDialog() == DialogResult.OK)
-                    filename = save.FileName;
-                else
-                    return;
-
-            
-                //if (silentSave)
-                //    File.Delete(filename);
-
-                StreamWriter sw = new StreamWriter(filename);
-
-                if (   Serilizeable is List<OrderNow>)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<OrderNow>));
-                        xml.Serialize(sw, OrderList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, OrderList);
-
-                    OrderList.Clear();
-                }
-                else if (Serilizeable is List <CustomerInfo>)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<CustomerInfo>));
-                        xml.Serialize(sw, CustomerList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, CustomerList);
-
-                    CustomerList.Clear();
-                }
-                else if (Serilizeable is List<Staff_Info>)
-                {
-                    if (Path.GetExtension(filename).ToLower() == ".xml")
-                    {
-                        xml = new XmlSerializer(typeof(List<Staff_Info>));
-                        xml.Serialize(sw, StaffList);
-                    }
-                    else
-                        JSONserializer.Serialize(sw, StaffList);
-
-                    StaffList.Clear();
-                }
-
-                if (silentSave == true)
-                    MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (save.ShowDialog() == DialogResult.OK)
+                filename = save.FileName;
             else
-                    MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
 
-                sw.Close();
+            StreamWriter sw = new StreamWriter(filename);
+
+            if (Serilizeable is List<OrderNow>)
+            {
+                if (Path.GetExtension(filename).ToLower() == ".xml")
+                {
+                    xml = new XmlSerializer(typeof(List<OrderNow>));
+                    xml.Serialize(sw, OrderList);
+                }
+                else
+                    JSONserializer.Serialize(sw, OrderList);
+
+                OrderList.Clear();
             }
-        
+            else if (Serilizeable is List<CustomerInfo>)
+            {
+                if (Path.GetExtension(filename).ToLower() == ".xml")
+                {
+                    xml = new XmlSerializer(typeof(List<CustomerInfo>));
+                    xml.Serialize(sw, CustomerList);
+                }
+                else
+                    JSONserializer.Serialize(sw, CustomerList);
+
+                CustomerList.Clear();
+            }
+            else if (Serilizeable is List<Staff_Info>)
+            {
+                if (Path.GetExtension(filename).ToLower() == ".xml")
+                {
+                    xml = new XmlSerializer(typeof(List<Staff_Info>));
+                    xml.Serialize(sw, StaffList);
+                }
+                else
+                    JSONserializer.Serialize(sw, StaffList);
+
+                StaffList.Clear();
+            }
+
+            MessageBox.Show("Saved Successfully (Serialize)\n" + save.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            sw.Close();
+        }
 
         public static void Deserialize(string NameOfList)
         {
@@ -99,12 +87,14 @@ namespace Assignment_4
                                 StaffList.Clear();
                                 xml = new XmlSerializer(typeof(List<Staff_Info>));
                                 StaffList = (List<Staff_Info>)xml.Deserialize(read);
+                                MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
 
                             case "customer":
                                 CustomerList.Clear();
                                 xml = new XmlSerializer(typeof(List<CustomerInfo>));
                                 CustomerList = (List<CustomerInfo>)xml.Deserialize(read);
+                                MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
 
                             case "order":
@@ -122,10 +112,12 @@ namespace Assignment_4
                         {
                             case "staff":
                                 StaffList = JsonConvert.DeserializeObject<List<Staff_Info>>(read.ReadToEnd());
+                                MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
 
                             case "customer":
                                 CustomerList = JsonConvert.DeserializeObject<List<CustomerInfo>>(read.ReadToEnd());
+                                MessageBox.Show("Open Successfully (Deserialize)\n" + open.FileName, "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
 
                             case "order":
@@ -153,7 +145,7 @@ namespace Assignment_4
             else if (dialogResult == DialogResult.No)
             {
                 OrderList.Add(new OrderNow(name, price, quantity));
-                Serialize(OrderList, false);
+                Serialize(OrderList);
             }
         }
     }

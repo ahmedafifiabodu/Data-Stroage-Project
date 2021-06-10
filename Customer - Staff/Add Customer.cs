@@ -33,6 +33,21 @@ namespace Assignment_4.Customer___Staff
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
+            Helper.CustomerList.Add(new CustomerInfo(
+                    textBoxFirstName.Text,
+                    textBoxLastName.Text,
+                    textBoxStreetAddress.Text,
+                    textBoxStreetAddressLine2.Text,
+                    textBoxCity.Text,
+                    textBoxStateProvince.Text,
+                    Convert.ToInt32(textBoxPostalZipCode.Text),
+                    textBoxPhone.Text,
+                    textBoxEmail.Text,
+                    comboBoxHearAboutUs.SelectedItem.ToString(),
+                    richTextBoxFeedback.Text,
+                    richTextBoxSuggestions.Text,
+                    combo_recommend.SelectedText ?? "none"));
+
             Helper.Serialize(Helper.CustomerList);
         }
 
@@ -49,7 +64,7 @@ namespace Assignment_4.Customer___Staff
         {
             if (textBoxPhone.Text == "(000) 000-0000")
             {
-                textBoxPhone.Text = "";
+                textBoxPhone.Clear();
                 textBoxPhone.ForeColor = SystemColors.WindowText;
             }
         }
@@ -67,7 +82,7 @@ namespace Assignment_4.Customer___Staff
         {
             if (textBoxEmail.Text == "ex: email@yahoo.com")
             {
-                textBoxEmail.Text = "";
+                textBoxEmail.Clear();
                 textBoxEmail.ForeColor = SystemColors.WindowText;
             }
         }
@@ -102,14 +117,19 @@ namespace Assignment_4.Customer___Staff
         {
             foreach (Control rb in Controls)
             {
-                if (rb is RadioButton)
+                /*
+                 if (rb is RadioButton)
                     (rb as RadioButton).Checked = false;
+                */
 
                 if (rb is TextBox)
                     (rb as TextBox).Clear();
 
                 if (rb is RichTextBox)
                     (rb as RichTextBox).Clear();
+
+                if (rb is ComboBox)
+                    (rb as ComboBox).SelectedIndex = -1;
             }
 
             comboBoxHearAboutUs.Text = "Please Select";

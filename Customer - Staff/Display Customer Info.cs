@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Assignment_4.Customer
 {
@@ -22,43 +21,26 @@ namespace Assignment_4.Customer
             Open.Filter = "XML files (*.xml)|*.xml";
         }
 
-        private void ButtonAdd_Click(object sender, EventArgs e)
-        {
-        }
-
-
         private void ButtonView_Click(object sender, EventArgs e)
         {
-
-
             Helper.Deserialize("customer");
-
 
             foreach (CustomerInfo customer in Helper.CustomerList)
             {
-
-
-
                 dataGridView1.Rows.Add(customer.FirstName,
-customer.LastName,
-customer.StreetAddress,
-customer.StreetAddressLine2,
-customer.City,
-customer.StateProvince,
-customer.PostalZipCode,
-customer.Phone,
-customer.Email,
-customer.HearAboutUs,
-customer.Feedback,
-customer.Suggestions,
-customer.Recommend);
-
+                customer.LastName,
+                customer.StreetAddress,
+                customer.StreetAddressLine2,
+                customer.City,
+                customer.StateProvince,
+                customer.PostalZipCode,
+                customer.Phone,
+                customer.Email,
+                customer.HearAboutUs,
+                customer.Feedback,
+                customer.Suggestions,
+                customer.Recommend);
             }
-
-
-
-
-
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
@@ -107,7 +89,6 @@ customer.Recommend);
 
                     MessageBox.Show("Saved Successfully (Serialize)\n" + Save.FileName, "Done");
                 }
-
             }
         }
     }
