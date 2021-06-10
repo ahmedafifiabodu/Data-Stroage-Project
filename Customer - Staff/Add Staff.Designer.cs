@@ -88,7 +88,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSubmit.UseVisualStyleBackColor = true;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
+            this.buttonSubmit.Click += new System.EventHandler(this.ButtonSubmit_Click);
             // 
             // buttonAdd
             // 
@@ -106,7 +106,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonAdd.Text = "Add";
             this.buttonAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // labelLastName
             // 
@@ -207,8 +207,8 @@ namespace Assignment_4.Customer___Staff
             this.textBoxEmail.Size = new System.Drawing.Size(242, 22);
             this.textBoxEmail.TabIndex = 120;
             this.textBoxEmail.Text = "ex: email@yahoo.com";
-            this.textBoxEmail.Enter += new System.EventHandler(this.textBoxEmail_Enter);
-            this.textBoxEmail.Leave += new System.EventHandler(this.textBoxEmail_Leave);
+            this.textBoxEmail.Enter += new System.EventHandler(this.TextBoxEmail_Enter);
+            this.textBoxEmail.Leave += new System.EventHandler(this.TextBoxEmail_Leave);
             // 
             // textBoxPhone
             // 
@@ -221,8 +221,9 @@ namespace Assignment_4.Customer___Staff
             this.textBoxPhone.Size = new System.Drawing.Size(242, 22);
             this.textBoxPhone.TabIndex = 121;
             this.textBoxPhone.Text = "(000) 000-0000";
-            this.textBoxPhone.Enter += new System.EventHandler(this.textBoxPhone_Enter);
-            this.textBoxPhone.Leave += new System.EventHandler(this.textBoxPhone_Leave);
+            this.textBoxPhone.Enter += new System.EventHandler(this.TextBoxPhone_Enter);
+            this.textBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.textBoxPhone.Leave += new System.EventHandler(this.TextBoxPhone_Leave);
             // 
             // textBoxStateProvince
             // 
@@ -270,6 +271,7 @@ namespace Assignment_4.Customer___Staff
             this.textBoxPostalZipCode.Name = "textBoxPostalZipCode";
             this.textBoxPostalZipCode.Size = new System.Drawing.Size(157, 22);
             this.textBoxPostalZipCode.TabIndex = 115;
+            this.textBoxPostalZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // textBoxStreetAddressLine2
             // 
@@ -600,9 +602,9 @@ namespace Assignment_4.Customer___Staff
             this.comboBoxCountry.Sorted = true;
             this.comboBoxCountry.TabIndex = 122;
             this.comboBoxCountry.Text = "Please Select";
-            this.comboBoxCountry.Enter += new System.EventHandler(this.comboBoxCountry_Enter);
-            this.comboBoxCountry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxCountry_KeyDown);
-            this.comboBoxCountry.Leave += new System.EventHandler(this.comboBoxCountry_Leave);
+            this.comboBoxCountry.Enter += new System.EventHandler(this.ComboBoxCountry_Enter);
+            this.comboBoxCountry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBoxCountry_KeyDown);
+            this.comboBoxCountry.Leave += new System.EventHandler(this.ComboBoxCountry_Leave);
             // 
             // textBoxApplyForPosition
             // 
@@ -658,7 +660,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonClear.Text = "Clear";
             this.buttonClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonClear.UseVisualStyleBackColor = true;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            this.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
             // labelComment
             // 
@@ -696,7 +698,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonUploadResume.Text = "Upload Here";
             this.buttonUploadResume.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUploadResume.UseVisualStyleBackColor = true;
-            this.buttonUploadResume.Click += new System.EventHandler(this.buttonUploadResume_Click);
+            this.buttonUploadResume.Click += new System.EventHandler(this.ButtonUploadResume_Click);
             // 
             // buttonUploadCoverLetter
             // 
@@ -714,7 +716,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonUploadCoverLetter.Text = "Upload Here";
             this.buttonUploadCoverLetter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonUploadCoverLetter.UseVisualStyleBackColor = true;
-            this.buttonUploadCoverLetter.Click += new System.EventHandler(this.buttonUploadCoverLetter_Click);
+            this.buttonUploadCoverLetter.Click += new System.EventHandler(this.ButtonUploadCoverLetter_Click);
             // 
             // pictureBoxCoverLetter
             // 

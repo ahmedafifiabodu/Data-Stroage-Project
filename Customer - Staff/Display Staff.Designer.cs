@@ -210,7 +210,7 @@ namespace Assignment_4.Customer___Staff
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSubmit.UseVisualStyleBackColor = true;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
+            this.buttonSubmit.Click += new System.EventHandler(this.ButtonSubmit_Click);
             // 
             // Display_Staff
             // 

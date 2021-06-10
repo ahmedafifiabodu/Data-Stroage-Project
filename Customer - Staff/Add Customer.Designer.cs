@@ -61,7 +61,9 @@ namespace Assignment_4.Customer___Staff
             this.labelName = new System.Windows.Forms.Label();
             this.labelAddress = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.combo_recommend = new System.Windows.Forms.ComboBox();
+            this.radioButtonNo = new System.Windows.Forms.RadioButton();
+            this.radioButtonMaybe = new System.Windows.Forms.RadioButton();
+            this.radioButtonYes = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // buttonSubmit
@@ -136,7 +138,7 @@ namespace Assignment_4.Customer___Staff
             this.comboBoxHearAboutUs.TabIndex = 89;
             this.comboBoxHearAboutUs.Text = "Please Select";
             this.comboBoxHearAboutUs.Enter += new System.EventHandler(this.ComboBoxHearAboutUs_Enter);
-            this.comboBoxHearAboutUs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxHearAboutUs_KeyDown);
+            this.comboBoxHearAboutUs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComboBoxHearAboutUs_KeyDown);
             this.comboBoxHearAboutUs.Leave += new System.EventHandler(this.ComboBoxHearAboutUs_Leave);
             // 
             // labelLastName
@@ -253,6 +255,7 @@ namespace Assignment_4.Customer___Staff
             this.textBoxPhone.TabIndex = 88;
             this.textBoxPhone.Text = "(000) 000-0000";
             this.textBoxPhone.Enter += new System.EventHandler(this.TextBoxPhone_Enter);
+            this.textBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBoxPhone.Leave += new System.EventHandler(this.TextBoxPhone_Leave);
             // 
             // textBoxStateProvince
@@ -301,6 +304,7 @@ namespace Assignment_4.Customer___Staff
             this.textBoxPostalZipCode.Name = "textBoxPostalZipCode";
             this.textBoxPostalZipCode.Size = new System.Drawing.Size(329, 22);
             this.textBoxPostalZipCode.TabIndex = 82;
+            this.textBoxPostalZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // textBoxStreetAddressLine2
             // 
@@ -421,24 +425,49 @@ namespace Assignment_4.Customer___Staff
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
-            // combo_recommend
+            // radioButtonNo
             // 
-            this.combo_recommend.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combo_recommend.FormattingEnabled = true;
-            this.combo_recommend.Items.AddRange(new object[] {
-            "Yes",
-            "Maybe",
-            "No"});
-            this.combo_recommend.Location = new System.Drawing.Point(376, 348);
-            this.combo_recommend.Name = "combo_recommend";
-            this.combo_recommend.Size = new System.Drawing.Size(185, 21);
-            this.combo_recommend.TabIndex = 105;
+            this.radioButtonNo.AutoSize = true;
+            this.radioButtonNo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonNo.Location = new System.Drawing.Point(503, 347);
+            this.radioButtonNo.Name = "radioButtonNo";
+            this.radioButtonNo.Size = new System.Drawing.Size(43, 21);
+            this.radioButtonNo.TabIndex = 107;
+            this.radioButtonNo.TabStop = true;
+            this.radioButtonNo.Text = "No";
+            this.radioButtonNo.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonMaybe
+            // 
+            this.radioButtonMaybe.AutoSize = true;
+            this.radioButtonMaybe.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonMaybe.Location = new System.Drawing.Point(430, 347);
+            this.radioButtonMaybe.Name = "radioButtonMaybe";
+            this.radioButtonMaybe.Size = new System.Drawing.Size(67, 21);
+            this.radioButtonMaybe.TabIndex = 106;
+            this.radioButtonMaybe.TabStop = true;
+            this.radioButtonMaybe.Text = "Maybe";
+            this.radioButtonMaybe.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonYes
+            // 
+            this.radioButtonYes.AutoSize = true;
+            this.radioButtonYes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonYes.Location = new System.Drawing.Point(376, 347);
+            this.radioButtonYes.Name = "radioButtonYes";
+            this.radioButtonYes.Size = new System.Drawing.Size(46, 21);
+            this.radioButtonYes.TabIndex = 105;
+            this.radioButtonYes.TabStop = true;
+            this.radioButtonYes.Text = "Yes";
+            this.radioButtonYes.UseVisualStyleBackColor = true;
             // 
             // Add_Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.combo_recommend);
+            this.Controls.Add(this.radioButtonNo);
+            this.Controls.Add(this.radioButtonMaybe);
+            this.Controls.Add(this.radioButtonYes);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.buttonAdd);
@@ -509,6 +538,8 @@ namespace Assignment_4.Customer___Staff
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelAddress;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.ComboBox combo_recommend;
+        private System.Windows.Forms.RadioButton radioButtonNo;
+        private System.Windows.Forms.RadioButton radioButtonMaybe;
+        private System.Windows.Forms.RadioButton radioButtonYes;
     }
 }

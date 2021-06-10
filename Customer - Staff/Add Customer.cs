@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Assignment_4.Customer___Staff
@@ -11,9 +12,82 @@ namespace Assignment_4.Customer___Staff
             InitializeComponent();
         }
 
+        private bool check = false;
+
+        private void Check(object sender, EventArgs e)
+        {
+            var checkedButton = Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (textBoxFirstName.Text == "")
+            {
+                MessageBox.Show("Please enter your first name!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxLastName.Text == "")
+            {
+                MessageBox.Show("Please enter your last name!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStreetAddress.Text == "")
+            {
+                MessageBox.Show("Please enter your address!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStreetAddressLine2.Text == "")
+            {
+                MessageBox.Show("Please enter your address line 2!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxCity.Text == "")
+            {
+                MessageBox.Show("Please enter your city!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStateProvince.Text == "")
+            {
+                MessageBox.Show("Please enter your state/province!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxPostalZipCode.Text == "")
+            {
+                MessageBox.Show("Please enter your postal/ZIP code!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxPhone.Text == "(000) 000-0000")
+            {
+                MessageBox.Show("Please enter your phone!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxEmail.Text == "ex: email@yahoo.com")
+            {
+                MessageBox.Show("Please enter your email!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (comboBoxHearAboutUs.Text == "Please Select")
+            {
+                MessageBox.Show("Please let us know where did you hear about us?", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (richTextBoxFeedback.Text == "")
+            {
+                MessageBox.Show("Please let us know about your feedback!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (richTextBoxSuggestions.Text == "")
+            {
+                MessageBox.Show("Please let us know about your suggestions!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (checkedButton == null)
+            {
+                MessageBox.Show("Please let us know about your recommendation!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                check = true;
+                ButtonAdd_Click(sender, e);
+            }
+        }
+
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            Helper.CustomerList.Add(new CustomerInfo(
+            var checkedButton = Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+
+            if (check == false)
+            {
+                Check(sender, e);
+            }
+            else
+            {
+                Helper.CustomerList.Add(new CustomerInfo(
                     textBoxFirstName.Text,
                     textBoxLastName.Text,
                     textBoxStreetAddress.Text,
@@ -26,29 +100,23 @@ namespace Assignment_4.Customer___Staff
                     comboBoxHearAboutUs.SelectedItem.ToString(),
                     richTextBoxFeedback.Text,
                     richTextBoxSuggestions.Text,
-                    combo_recommend.SelectedText ?? "none"));
+                    checkedButton.Text));
 
-            MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Added Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ButtonClear_Click(sender, e);
+            }
         }
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            Helper.CustomerList.Add(new CustomerInfo(
-                    textBoxFirstName.Text,
-                    textBoxLastName.Text,
-                    textBoxStreetAddress.Text,
-                    textBoxStreetAddressLine2.Text,
-                    textBoxCity.Text,
-                    textBoxStateProvince.Text,
-                    Convert.ToInt32(textBoxPostalZipCode.Text),
-                    textBoxPhone.Text,
-                    textBoxEmail.Text,
-                    comboBoxHearAboutUs.SelectedItem.ToString(),
-                    richTextBoxFeedback.Text,
-                    richTextBoxSuggestions.Text,
-                    combo_recommend.SelectedText ?? "none"));
-
-            Helper.Serialize(Helper.CustomerList);
+            if (Helper.CustomerList.Count == 0)
+            {
+                MessageBox.Show("Please enter your customer information and click add first then click on submit!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Helper.Serialize(Helper.CustomerList);
+            }
         }
 
         private void TextBoxPhone_Leave(object sender, EventArgs e)
@@ -117,19 +185,14 @@ namespace Assignment_4.Customer___Staff
         {
             foreach (Control rb in Controls)
             {
-                /*
-                 if (rb is RadioButton)
+                if (rb is RadioButton)
                     (rb as RadioButton).Checked = false;
-                */
 
                 if (rb is TextBox)
                     (rb as TextBox).Clear();
 
                 if (rb is RichTextBox)
                     (rb as RichTextBox).Clear();
-
-                if (rb is ComboBox)
-                    (rb as ComboBox).SelectedIndex = -1;
             }
 
             comboBoxHearAboutUs.Text = "Please Select";
@@ -142,9 +205,17 @@ namespace Assignment_4.Customer___Staff
             textBoxEmail.ForeColor = SystemColors.GrayText;
         }
 
-        private void comboBoxHearAboutUs_KeyDown(object sender, KeyEventArgs e)
+        private void ComboBoxHearAboutUs_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

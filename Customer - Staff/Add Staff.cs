@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -8,16 +7,12 @@ namespace Assignment_4.Customer___Staff
 {
     public partial class Add_Staff : UserControl
     {
-
-        private Staff_Info SI = new Staff_Info();
-
-        private SaveFileDialog save = new SaveFileDialog();
-        private OpenFileDialog OpenImage = new OpenFileDialog();
+        private readonly OpenFileDialog OpenImage = new OpenFileDialog();
 
         private byte[] CoverLetterImage;
         private byte[] UploadResumeImage;
 
-        public object XDoc { get; private set; }
+        private bool check = false;
 
         public Add_Staff()
         {
@@ -26,11 +21,74 @@ namespace Assignment_4.Customer___Staff
 
             OpenImage.Title = "Open Cover Letter file";
             OpenImage.Filter = "JPG Files (*.jpg)| *.jpg|PNG Files (*.png)| *.png";
-
-            save.Filter = "XML files (*.xml)|*.xml";
         }
 
-        private void comboBoxCountry_Enter(object sender, EventArgs e)
+        private void Check(object sender, EventArgs e)
+        {
+            if (textBoxFirstName.Text == "")
+            {
+                MessageBox.Show("Please enter your first name!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxLastName.Text == "")
+            {
+                MessageBox.Show("Please enter your last name!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStreetAddress.Text == "")
+            {
+                MessageBox.Show("Please enter your address!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStreetAddressLine2.Text == "")
+            {
+                MessageBox.Show("Please enter your address line 2!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxCity.Text == "")
+            {
+                MessageBox.Show("Please enter your city!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxStateProvince.Text == "")
+            {
+                MessageBox.Show("Please enter your state/province!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxPostalZipCode.Text == "")
+            {
+                MessageBox.Show("Please enter your postal/ZIP code!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (comboBoxCountry.Text == "Please Select")
+            {
+                MessageBox.Show("Please select your country!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxPhone.Text == "(000) 000-0000")
+            {
+                MessageBox.Show("Please enter your phone!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxEmail.Text == "ex: email@yahoo.com")
+            {
+                MessageBox.Show("Please enter your email!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxApplyForPosition.Text == "")
+            {
+                MessageBox.Show("Please let us know what is your job position?", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (textBoxWhenYouCanStart.Text == "")
+            {
+                MessageBox.Show("Please let us know when you can start?", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (CoverLetterImage == null || UploadResumeImage == null)
+            {
+                MessageBox.Show("Please select an image", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (richTextBoxYourComment.Text == "")
+            {
+                MessageBox.Show("Please let us know about your comment on the job!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                check = true;
+                ButtonAdd_Click(sender, e);
+            }
+        }
+
+        private void ComboBoxCountry_Enter(object sender, EventArgs e)
         {
             if (comboBoxCountry.Text == "Please Select")
             {
@@ -39,7 +97,7 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void comboBoxCountry_Leave(object sender, EventArgs e)
+        private void ComboBoxCountry_Leave(object sender, EventArgs e)
         {
             if (comboBoxCountry.Text.Length == 0)
             {
@@ -48,7 +106,7 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void textBoxPhone_Enter(object sender, EventArgs e)
+        private void TextBoxPhone_Enter(object sender, EventArgs e)
         {
             if (textBoxPhone.Text == "(000) 000-0000")
             {
@@ -57,7 +115,7 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void textBoxPhone_Leave(object sender, EventArgs e)
+        private void TextBoxPhone_Leave(object sender, EventArgs e)
         {
             if (textBoxPhone.Text.Length == 0)
             {
@@ -66,7 +124,7 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void textBoxEmail_Leave(object sender, EventArgs e)
+        private void TextBoxEmail_Leave(object sender, EventArgs e)
         {
             if (textBoxEmail.Text.Length == 0)
             {
@@ -75,7 +133,7 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void textBoxEmail_Enter(object sender, EventArgs e)
+        private void TextBoxEmail_Enter(object sender, EventArgs e)
         {
             if (textBoxEmail.Text == "ex: email@yahoo.com")
             {
@@ -84,12 +142,12 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void comboBoxCountry_KeyDown(object sender, KeyEventArgs e)
+        private void ComboBoxCountry_KeyDown(object sender, KeyEventArgs e)
         {
             e.SuppressKeyPress = true;
         }
 
-        private void buttonClear_Click(object sender, EventArgs e)
+        private void ButtonClear_Click(object sender, EventArgs e)
         {
             textBoxFirstName.Clear();
             textBoxLastName.Clear();
@@ -109,6 +167,12 @@ namespace Assignment_4.Customer___Staff
                     (rb as RadioButton).Checked = false;
                 }
             }
+
+            CoverLetterImage = null;
+            UploadResumeImage = null;
+
+            pictureBoxCoverLetter.Image = null;
+            pictureBoxUploadResume.Image = null;
 
             comboBoxCountry.Text = "Please Select";
             comboBoxCountry.ForeColor = SystemColors.GrayText;
@@ -149,18 +213,16 @@ namespace Assignment_4.Customer___Staff
         }
         */
 
-        private void buttonUploadCoverLetter_Click(object sender, EventArgs e)
+        private void ButtonUploadCoverLetter_Click(object sender, EventArgs e)
         {
             if (OpenImage.ShowDialog() == DialogResult.OK)
             {
                 pictureBoxCoverLetter.Image = new Bitmap(OpenImage.FileName);
                 CoverLetterImage = File.ReadAllBytes(OpenImage.FileName);
-
-
             }
         }
 
-        private void buttonUploadResume_Click(object sender, EventArgs e)
+        private void ButtonUploadResume_Click(object sender, EventArgs e)
         {
             if (OpenImage.ShowDialog() == DialogResult.OK)
             {
@@ -169,22 +231,26 @@ namespace Assignment_4.Customer___Staff
             }
         }
 
-        private void buttonSubmit_Click(object sender, EventArgs e)
+        private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-           
-            Helper.Serialize(Helper.StaffList);
-        }
-
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            if (CoverLetterImage == null || UploadResumeImage == null)
+            if (Helper.StaffList.Count == 0)
             {
-                MessageBox.Show("Please select an image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Please enter your staff information and click add first then click on submit!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
+                Helper.Serialize(Helper.StaffList);
+            }
+        }
 
+        private void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            if (check == false)
+            {
+                Check(sender, e);
+            }
+            else
+            {
                 Helper.StaffList.Add(new Staff_Info(
                                 textBoxFirstName.Text,
                                 textBoxLastName.Text,
@@ -202,6 +268,15 @@ namespace Assignment_4.Customer___Staff
                                 richTextBoxYourComment.Text));
 
                 MessageBox.Show("Added Successfully", "done", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                ButtonClear_Click(sender, e);
+            }
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

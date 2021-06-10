@@ -97,7 +97,7 @@ namespace Assignment_4
             this.buttonDisplayCustomer.Text = "   Display Staff";
             this.buttonDisplayCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonDisplayCustomer.UseVisualStyleBackColor = true;
-            this.buttonDisplayCustomer.Click += new System.EventHandler(this.buttonDisplayCustomer_Click);
+            this.buttonDisplayCustomer.Click += new System.EventHandler(this.ButtonDisplayCustomer_Click);
             // 
             // buttonView
             // 
@@ -133,7 +133,7 @@ namespace Assignment_4
             this.buttonAddStaff.Text = "Add Staff";
             this.buttonAddStaff.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAddStaff.UseVisualStyleBackColor = true;
-            this.buttonAddStaff.Click += new System.EventHandler(this.buttonAddStaff_Click);
+            this.buttonAddStaff.Click += new System.EventHandler(this.ButtonAddStaff_Click);
             // 
             // buttonAddCustomer
             // 
@@ -152,7 +152,7 @@ namespace Assignment_4
             this.buttonAddCustomer.Text = "Add Customer";
             this.buttonAddCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonAddCustomer.UseVisualStyleBackColor = true;
-            this.buttonAddCustomer.Click += new System.EventHandler(this.buttonAddCustomer_Click);
+            this.buttonAddCustomer.Click += new System.EventHandler(this.ButtonAddCustomer_Click);
             // 
             // panel2
             // 
@@ -258,7 +258,7 @@ namespace Assignment_4
             this.buttonMenu.Text = "Back To Menu";
             this.buttonMenu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonMenu.UseVisualStyleBackColor = true;
-            this.buttonMenu.Click += new System.EventHandler(this.buttonMenu_Click);
+            this.buttonMenu.Click += new System.EventHandler(this.ButtonMenu_Click);
             // 
             // panelCustomer
             // 
@@ -278,7 +278,6 @@ namespace Assignment_4
             this.display_Staff1.Name = "display_Staff1";
             this.display_Staff1.Size = new System.Drawing.Size(715, 470);
             this.display_Staff1.TabIndex = 64;
-            this.display_Staff1.Load += new System.EventHandler(this.display_Staff1_Load);
             // 
             // add_Customer1
             // 

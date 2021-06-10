@@ -21,7 +21,7 @@ namespace Assignment_4
 
         public static void Serialize(dynamic Serilizeable)
         {
-            string filename = "";
+            string filename;
 
             if (save.ShowDialog() == DialogResult.OK)
                 filename = save.FileName;
@@ -102,7 +102,6 @@ namespace Assignment_4
                                 xml = new XmlSerializer(typeof(List<OrderNow>));
                                 OrderList = (List<OrderNow>)xml.Deserialize(read);
                                 MessageBox.Show("Please Hover On The Notify Button", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
                                 break;
                         }
                     }
@@ -123,10 +122,10 @@ namespace Assignment_4
                             case "order":
                                 OrderList = JsonConvert.DeserializeObject<List<OrderNow>>(read.ReadToEnd());
                                 MessageBox.Show("Please Hover On The Notify Button", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
                                 break;
                         }
                     }
+                    read.Close();
                 }
             }
             catch
